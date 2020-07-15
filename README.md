@@ -2,7 +2,7 @@
 Repositorio del Grupo 2 del curso de Estructura de Datos
 
 Integrantes:
-- Cifuentes Michuy, Daniel Ernesto
-- Ramos Villarreal, Edward Junior
-- Rodriguez Tocas, Miguel Angel
-- Zambrano Quispe, Arian Alberto
+dc_: Cifuentes Michuy, Daniel Ernesto
+er_: Ramos Villarreal, Edward Junior
+mr_: Rodriguez Tocas, Miguel Angel
+az_: Zambrano Quispe, Arian Alberto
