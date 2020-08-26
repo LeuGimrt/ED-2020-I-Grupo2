@@ -11,18 +11,20 @@ typedef struct Nodo{
 }nodo;
 
 
-void insertar_nodo(nodo* arbol, int dato);
-void eliminar_nodo(nodo* arbol, int dato);
+nodo* insertar_nodo(nodo* ,int);
+void eliminar_nodo(nodo* ,int);
 
 void menu();
+
+nodo *abb = NULL;
 
 int main(){
 	menu();
 	return 0;
 }
 
+
 void menu(){
-	nodo* abb = NULL;
 	int opc, dato;
 
 	printf("1. Insertar Nodo\n2. Eliminar Nodo\nIngrese opcion: "); fflush(stdout);
@@ -31,14 +33,13 @@ void menu(){
 	switch(opc){
 		case 1: printf("\nIngrese el nodo a insertar: "); fflush(stdout);
 				scanf("%d", &dato); fflush(stdin);
-				insertar_nodo(abb, dato);
-				printf("\nNodo ingresado correctamente");
+				abb = insertar_nodo(abb, dato);
+				printf("\nValor ingresado: %d", abb->info); fflush(stdout);
 				break;
 
 		case 2: printf("\nIngrese el nodo a eliminar: "); fflush(stdout);
 				scanf("%d", &dato); fflush(stdin);
 				eliminar_nodo(abb, dato);
-				printf("\nNodo eliminado correctamente");
 				break;
 
 		default: menu();
@@ -63,10 +64,7 @@ void menu(){
 
 }
 
-
-
-
-void insertar_nodo(nodo* arbol, int dato){
+nodo* insertar_nodo(nodo* arbol, int dato){
 	nodo *nuevo;
 	nuevo = (nodo*)malloc(sizeof(nuevo));
 	nuevo->info = dato;
@@ -75,18 +73,20 @@ void insertar_nodo(nodo* arbol, int dato){
 
 
 	if(arbol == NULL){
-		printf("nodovacio\n");
 		arbol = nuevo;
 	}
 
 	else{
 
 		if(dato < arbol->info)
-			insertar_nodo(arbol->izq, dato);
+			arbol = insertar_nodo(arbol->izq, dato);
 
 		else if(dato > arbol->info)
-			insertar_nodo(arbol->der, dato);
+			arbol = insertar_nodo(arbol->der, dato);
+
 	}
+
+	return arbol;
 
 }
 
@@ -145,19 +145,23 @@ void comprobar_eliminar(nodo* nodo_){
 
 void eliminar_nodo(nodo* arbol, int dato){
 	if(arbol==NULL){
+		printf("\nArbol vacio"); fflush(stdout);
 		return;
 	}
 
-	else if(dato < arbol->info){
-		eliminar_nodo(arbol->izq, dato);
-	}
-
-	else if(dato > arbol->info)
-		eliminar_nodo(arbol->der, dato);
-
 	else{
-		comprobar_eliminar(arbol);
+
+		if(dato < arbol->info)
+			eliminar_nodo(arbol->izq, dato);
+
+		else if(dato > arbol->info)
+			eliminar_nodo(arbol->der, dato);
+
+		else
+			comprobar_eliminar(arbol);
+
 	}
+
 }
 
 
