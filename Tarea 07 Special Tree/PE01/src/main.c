@@ -73,7 +73,9 @@ void insertar_nodo(nodo* arbol, int dato){
 	nuevo->izq = NULL;
 	nuevo->der = NULL;
 
+
 	if(arbol == NULL){
+		printf("nodovacio\n");
 		arbol = nuevo;
 	}
 
