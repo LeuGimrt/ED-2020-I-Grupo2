@@ -43,43 +43,134 @@
 		<main>
 
 			<div class="container">
-				<h2>Toggleable Tabs</h2>
+				<img src="img/San-Marcos.jpg" class="img-fluid">
 				<br>
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 				  <li class="nav-item">
-					<a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+					<a class="nav-link active" data-toggle="tab" href="#home">Binary Search</a>
 				  </li>
 				  <li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+					<a class="nav-link" data-toggle="tab" href="#menu1">Linear Search</a>
 				  </li>
 				  <li class="nav-item">
-					<a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+					<a class="nav-link" data-toggle="tab" href="#menu2">Quick Select</a>
 				  </li>
 				</ul>
 			  
 				<!-- Tab panes -->
 				<div class="tab-content">
+					<!--Binary Search-->
 				  <div id="home" class="container tab-pane active"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
 							
 						</div>
 						<div class="col-12 col-md-4">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error ex repellat exercitationem fugit cupiditate tenetur praesentium non rem ipsa quis assumenda, officia laudantium eligendi perferendis sequi perspiciatis optio quas facere eos commodi illum quo corrupti? Debitis sint eligendi in explicabo culpa nostrum, dolor ab praesentium voluptatibus repellendus earum doloremque sed.
+							<p class="Binary">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion binarySearch(list lalista,entero dato) <br>
+								D.V. <br>
+								Definir menor como entero <br>
+								Definir mayor como entero <br>
+								Definir centro como entero <br>
+								Inicio <br>
+								mayor <- tamaño(lalista) - 1 <br>
+								Mientras (menor <= mayor)<br>
+									centro <- (menor + mayor)/2
+								FinMientras<br>
+								Si (lalista[centro] == dato) entonces<br>
+									Devolver centro<br>
+								SiNo <br>
+									Si(lalista[centro] < dato) entonces <br>
+										menor <- centro + 1 <br>
+									SiNo <br>
+											mayor <- centro - 1 <br>
+									FinSi <br>
+								FinSi<br>
+								Devolver -1<br>
+								FinFuncion<br>
+							</p>
 						</div>
 					</div>
 				  </div>
+
+
+				  <!--Linear Search-->
 				  <div id="menu1" class="container tab-pane fade"><br>
-					<h3>Menu 1</h3>
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Linear">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion entero linearSearch(list lalista,entero dato) <br>
+								D.V. <br>
+								Definir i como entero <br>
+								Inicio <br>
+								i <- 0 <br>
+								Mientras (i < tamaño(lalista) y lalista[i] < dato)<br>
+									i <- i+1<br>
+								FinMientras<br>
+								Si (i >= tamaño(lalista) o lalista[i] != dato) entonces<br>
+									Devolver -1<br>
+								FinSi<br>
+								Devolver i<br>
+								FinFuncion<br>
+							</p>
+						</div>
+					</div>
 				  </div>
+
+				  <!--QuickSelect-->
 				  <div id="menu2" class="container tab-pane fade"><br>
-					<h3>Menu 2</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Quick">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
+								D.V. <br>
+								Definir pivote como entero<br>
+								Inicio <br>
+								Si (izquierda == derecha) entonces <br>
+									Devolver lalista[izquierda] <br>
+								FinSi
+								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
+								Si (k = pivote) entonces <br>
+									Devolver lalista[k] <br>
+								SiNo <br>
+									Si (k < pivote) <br>
+										derecha = pivote - 1 <br>
+									SiNo <br>
+										izquierda = pivote + 1 <br>
+									FinSi <br>
+								FinSi <br>
+								FinFuncion<br>
+
+								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
+								D.V. <br>
+								Definir i como entero <br>
+								Definir j como entero <br>
+								Definir x como arreglo <br>
+								Inicio <br>
+								Para j de izquierda hasta derecha con paso 1 
+									Si (lalista[j] <= x) entonces <br>
+										swap(lalista[i], lalista[j]) <br>
+										i <- i + 1 <br>
+									FinSi <br>
+								FinPara <br>
+								swap(lalista[i], lalista[derecha]) <br>
+								Devolver i 
+								FinFuncion <br>
+							</p>
+						</div>
+					</div>
 				  </div>
 				</div>
-
 			  </div>
 		</main>
 	</body>

@@ -30,3 +30,28 @@ color: rgb(166, 0, 12);
 main {
     margin-bottom: 20px;
 }
+
+.img-fluid{
+    transform: scale(0.5);
+}
+
+.Binary{
+    padding: 10px;
+    margin: auto;
+    border: solid;
+    border-radius: 20px;
+}
+
+.Linear{
+    padding: 10px;
+    margin: auto;
+    border: solid;
+    border-radius: 20px;
+}
+
+.Quick{
+    padding: 10px;
+    margin: auto;
+    border: solid;
+    border-radius: 20px;
+}
