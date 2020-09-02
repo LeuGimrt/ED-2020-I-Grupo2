@@ -1,0 +1,25 @@
+body {
+    background-color: #fcfcf4;
+}
+
+.titulo {
+    display: grid;
+    place-items: center;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    min-width: 600px;
+}
+
+header h1 {
+color: rgb(166, 0, 12);
+}
+
+.borde {
+    width: 95%;
+    min-width: 600px;   
+    height: 1px;
+    margin: 0 auto;
+    background: #000000;
+}
+
+
