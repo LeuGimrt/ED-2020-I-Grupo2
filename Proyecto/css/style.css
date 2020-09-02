@@ -22,4 +22,11 @@ color: rgb(166, 0, 12);
     background: #000000;
 }
 
+.animacion {
+    height: 500px;
+    background-color: #240c8b;
+}
 
+main {
+    margin-bottom: 20px;
+}
