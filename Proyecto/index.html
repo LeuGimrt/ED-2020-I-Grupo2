@@ -33,18 +33,19 @@
 	</head>
 	
 	<body>
+		<!--HEADER-->
 		<header>
 			<div class="titulo">
 				<h1> Algoritmos de Busqueda Grupo 2</h1>
+				<img src="img/UNMSM_Escudo_y_Nombre.png" class="img-fluid">
 			</div>
 			<div class="borde"></div>
 		</header>
-		
+		<!--CONTENIDO-->
 		<main>
 
 			<div class="container">
-				<img src="img/San-Marcos.jpg" class="img-fluid">
-				<br>
+				
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 				  <li class="nav-item">
@@ -70,6 +71,7 @@
 							<p class="Binary">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion binarySearch(list lalista,entero dato) <br>
+								<br>
 								D.V. <br>
 								Definir menor como entero <br>
 								Definir mayor como entero <br>
@@ -77,16 +79,16 @@
 								Inicio <br>
 								mayor <- tamaño(lalista) - 1 <br>
 								Mientras (menor <= mayor)<br>
-									centro <- (menor + mayor)/2
+								&nbsp;	centro <- (menor + mayor)/2
 								FinMientras<br>
 								Si (lalista[centro] == dato) entonces<br>
-									Devolver centro<br>
+								&nbsp;	Devolver centro<br>
 								SiNo <br>
-									Si(lalista[centro] < dato) entonces <br>
-										menor <- centro + 1 <br>
-									SiNo <br>
-											mayor <- centro - 1 <br>
-									FinSi <br>
+								&nbsp;	Si(lalista[centro] < dato) entonces <br>
+								&nbsp;&nbsp;		menor <- centro + 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		mayor <- centro - 1 <br>
+								&nbsp;	FinSi <br>
 								FinSi<br>
 								Devolver -1<br>
 								FinFuncion<br>
@@ -106,15 +108,16 @@
 							<p class="Linear">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero linearSearch(list lalista,entero dato) <br>
+								<br>
 								D.V. <br>
 								Definir i como entero <br>
 								Inicio <br>
 								i <- 0 <br>
 								Mientras (i < tamaño(lalista) y lalista[i] < dato)<br>
-									i <- i+1<br>
+								&nbsp;	i <- i+1<br>
 								FinMientras<br>
 								Si (i >= tamaño(lalista) o lalista[i] != dato) entonces<br>
-									Devolver -1<br>
+								&nbsp;	Devolver -1<br>
 								FinSi<br>
 								Devolver i<br>
 								FinFuncion<br>
@@ -133,21 +136,22 @@
 							<p class="Quick">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
+								<br>
 								D.V. <br>
 								Definir pivote como entero<br>
 								Inicio <br>
 								Si (izquierda == derecha) entonces <br>
-									Devolver lalista[izquierda] <br>
+								&nbsp;	Devolver lalista[izquierda] <br>
 								FinSi
 								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
 								Si (k = pivote) entonces <br>
-									Devolver lalista[k] <br>
+								&nbsp;	Devolver lalista[k] <br>
 								SiNo <br>
-									Si (k < pivote) <br>
-										derecha = pivote - 1 <br>
-									SiNo <br>
-										izquierda = pivote + 1 <br>
-									FinSi <br>
+								&nbsp;	Si (k < pivote) <br>
+								&nbsp;&nbsp;		derecha = pivote - 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		izquierda = pivote + 1 <br>
+								&nbsp;	FinSi <br>
 								FinSi <br>
 								FinFuncion<br>
 
@@ -158,10 +162,10 @@
 								Definir x como arreglo <br>
 								Inicio <br>
 								Para j de izquierda hasta derecha con paso 1 
-									Si (lalista[j] <= x) entonces <br>
-										swap(lalista[i], lalista[j]) <br>
-										i <- i + 1 <br>
-									FinSi <br>
+								&nbsp;	Si (lalista[j] <= x) entonces <br>
+								&nbsp;&nbsp;		swap(lalista[i], lalista[j]) <br>
+								&nbsp;&nbsp;		i <- i + 1 <br>
+								&nbsp;	FinSi <br>
 								FinPara <br>
 								swap(lalista[i], lalista[derecha]) <br>
 								Devolver i 
@@ -173,5 +177,30 @@
 				</div>
 			  </div>
 		</main>
+		<!--FOOTER-->
+		<div class="borde"></div>
+		<footer class="pie_de_página">
+			<div class="integrantes"> <h2>Integrantes</h2></div>
+			<!--Daniel-->
+			<div class="integrante">
+				<h3>Daniel Cifuentes</h3>
+				<span>Código: 18200125</span>
+			</div>
+			<!--Edward-->
+			<div class="integrante">
+				<h3>Edward Ramos</h3>
+				<span>Código: 18200288</span>
+			</div>
+			<!--Miguel-->
+			<div class="integrante">
+				<h3>Miguel Rodriguez</h3>
+				<span>Código: 18200290</span>
+			</div>
+			<!--Arian-->
+			<div class="integrante">
+				<h3>Arian Zambrano</h3>
+				<span>Código: 18200107</span>
+			</div>
+		</footer>
 	</body>
 </html>
