@@ -70,7 +70,7 @@
 						<div class="col-12 col-md-4">
 							<p class="Binary">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero binarySearch(list lalista,entero dato) <br>
+								Funcion entero binarySearch(entero arr[],entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir menor como entero <br>
@@ -78,14 +78,14 @@
 								Definir centro como entero <br>
 								Inicio <br>
 								menor <- 0 <br>
-								mayor <- tamaño(lalista) - 1 <br>
+								mayor <- tamaño(arr) - 1 <br>
 								Mientras (menor <= mayor)<br>
 								&nbsp;	centro <- (menor + mayor)/2 <br>
 								FinMientras<br>
-								Si (lalista[centro] == dato) entonces<br>
+								Si (arr[centro] == dato) entonces<br>
 								&nbsp;	Devolver centro<br>
 								SiNo <br>
-								&nbsp;	Si(lalista[centro] < dato) entonces <br>
+								&nbsp;	Si(arr[centro] < dato) entonces <br>
 								&nbsp;&nbsp;		menor <- centro + 1 <br>
 								&nbsp;	SiNo <br>
 								&nbsp;&nbsp;		mayor <- centro - 1 <br>
@@ -108,16 +108,16 @@
 						<div class="col-12 col-md-4">
 							<p class="Linear">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero linearSearch(list lalista,entero dato) <br>
+								Funcion entero linearSearch(entero arr[],entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir i como entero <br>
 								Inicio <br>
 								i <- 0 <br>
-								Mientras (i < tamaño(lalista) y lalista[i] < dato)<br>
+								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
 								&nbsp;	i <- i+1<br>
 								FinMientras<br>
-								Si (i >= tamaño(lalista) o lalista[i] != dato) entonces<br>
+								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
 								&nbsp;	Devolver -1<br>
 								FinSi<br>
 								Devolver i<br>
@@ -136,24 +136,24 @@
 						<div class="col-12 col-md-5">
 							<p class="Quick">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
+								Funcion entero quickSelect(entero arr[],entero izquierda,entero derecha, entero k) <br>
 								<br>
 								D.V. <br>
 								Definir part como entero<br>
 								Inicio <br>
-								part <- particion(lalista,izquierda,derecha) <br>
+								part <- particion(arr,izquierda,derecha) <br>
 								Si (part == k) entonces <br>
-								&nbsp;	Devolver lalista[part] <br>
+								&nbsp;	Devolver arr[part] <br>
 								SiNo <br>
 								&nbsp;&nbsp;		Si (particion < k) entonces<br>
-								&nbsp;&nbsp;		Devolver quickSelect(lalista,part + 1,derecha,k) <br>
+								&nbsp;&nbsp;		Devolver quickSelect(arr,part + 1,derecha,k) <br>
 								&nbsp;	FinSi <br>
 								SiNo <br>
-								&nbsp;	Devolver quickSelect(lalista, izquierda,part - 1,k) <br>
+								&nbsp;	Devolver quickSelect(arr, izquierda,part - 1,k) <br>
 								FinSi <br>
 								FinFuncion<br><br>
 
-								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
+								Funcion entero particion(entero arr[],entero izquierda,entero derecha) <br>
 								D.V. <br>
 								Definir i como entero <br>
 								Definir pivote como entero <br>
@@ -161,19 +161,19 @@
 								Definir aux como entero <br>
 								Definir aux2 como entero <br>
 								Inicio <br>
-								pivote <- lalista[derecha] <br>
+								pivote <- arr[derecha] <br>
 								pivoteLoc <- izquierda <br>
 								Para i de izquierda hasta derecha  con paso 1 <br>
-								&nbsp;	Si (lalista[i] <= pivote) entonces <br>
-								&nbsp;&nbsp;&nbsp;		aux <- lalista[i] <br>
-								&nbsp;&nbsp;&nbsp;		lalista[i] <- lalista[pivoteLoc] <br>
-								&nbsp;&nbsp;&nbsp;		lalista[pivoteLoc] <- aux <br>
+								&nbsp;	Si (arr[i] <= pivote) entonces <br>
+								&nbsp;&nbsp;&nbsp;		aux <- arr[i] <br>
+								&nbsp;&nbsp;&nbsp;		arr[i] <- arr[pivoteLoc] <br>
+								&nbsp;&nbsp;&nbsp;		arr[pivoteLoc] <- aux <br>
 								&nbsp;&nbsp;&nbsp;		pivoteLoc <- pivoteLoc + 1 <br>
 								&nbsp;	FinSi <br>
 								FinPara <br>
-								aux2 <- lalista[derecha] <br>
-								lalista[derecha] <- lalista[pivoteLoc] <br>
-								lalista[pivoteLoc] <- aux2 <br>
+								aux2 <- arr[derecha] <br>
+								arr[derecha] <- arr[pivoteLoc] <br>
+								arr[pivoteLoc] <- aux2 <br>
 								Devolver pivoteLoc <br>
 								FinFuncion <br>
 							</p>
