@@ -70,16 +70,17 @@
 						<div class="col-12 col-md-4">
 							<p class="Binary">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion binarySearch(list lalista,entero dato) <br>
+								Funcion entero binarySearch(list lalista,entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir menor como entero <br>
 								Definir mayor como entero <br>
 								Definir centro como entero <br>
 								Inicio <br>
+								menor <- 0 <br>
 								mayor <- tamaño(lalista) - 1 <br>
 								Mientras (menor <= mayor)<br>
-								&nbsp;	centro <- (menor + mayor)/2
+								&nbsp;	centro <- (menor + mayor)/2 <br>
 								FinMientras<br>
 								Si (lalista[centro] == dato) entonces<br>
 								&nbsp;	Devolver centro<br>
@@ -129,46 +130,51 @@
 				  <!--QuickSelect-->
 				  <div id="menu2" class="container tab-pane fade"><br>
 					<div class="row">
-						<div class="col-12 col-md-8 animacion">
+						<div class="col-12 col-md-7 animacion">
 
 						</div>
-						<div class="col-12 col-md-4">
+						<div class="col-12 col-md-5">
 							<p class="Quick">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
 								<br>
 								D.V. <br>
-								Definir pivote como entero<br>
+								Definir part como entero<br>
 								Inicio <br>
-								Si (izquierda == derecha) entonces <br>
-								&nbsp;	Devolver lalista[izquierda] <br>
-								FinSi
-								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
-								Si (k = pivote) entonces <br>
-								&nbsp;	Devolver lalista[k] <br>
+								part <- particion(lalista,izquierda,derecha) <br>
+								Si (part == k) entonces <br>
+								&nbsp;	Devolver lalista[part] <br>
 								SiNo <br>
-								&nbsp;	Si (k < pivote) <br>
-								&nbsp;&nbsp;		derecha = pivote - 1 <br>
-								&nbsp;	SiNo <br>
-								&nbsp;&nbsp;		izquierda = pivote + 1 <br>
+								&nbsp;&nbsp;		Si (particion < k) entonces<br>
+								&nbsp;&nbsp;		Devolver quickSelect(lalista,part + 1,derecha,k) <br>
 								&nbsp;	FinSi <br>
+								SiNo <br>
+								&nbsp;	Devolver quickSelect(lalista, izquierda,part - 1,k) <br>
 								FinSi <br>
-								FinFuncion<br>
+								FinFuncion<br><br>
 
 								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
 								D.V. <br>
 								Definir i como entero <br>
-								Definir j como entero <br>
-								Definir x como arreglo <br>
+								Definir pivote como entero <br>
+								Definir pivoteLoc como entero <br>
+								Definir aux como entero <br>
+								Definir aux2 como entero <br>
 								Inicio <br>
-								Para j de izquierda hasta derecha con paso 1 
-								&nbsp;	Si (lalista[j] <= x) entonces <br>
-								&nbsp;&nbsp;		swap(lalista[i], lalista[j]) <br>
-								&nbsp;&nbsp;		i <- i + 1 <br>
+								pivote <- lalista[derecha] <br>
+								pivoteLoc <- izquierda <br>
+								Para i de izquierda hasta derecha  con paso 1 <br>
+								&nbsp;	Si (lalista[i] <= pivote) entonces <br>
+								&nbsp;&nbsp;&nbsp;		aux <- lalista[i] <br>
+								&nbsp;&nbsp;&nbsp;		lalista[i] <- lalista[pivoteLoc] <br>
+								&nbsp;&nbsp;&nbsp;		lalista[pivoteLoc] <- aux <br>
+								&nbsp;&nbsp;&nbsp;		pivoteLoc <- pivoteLoc + 1 <br>
 								&nbsp;	FinSi <br>
 								FinPara <br>
-								swap(lalista[i], lalista[derecha]) <br>
-								Devolver i 
+								aux2 <- lalista[derecha] <br>
+								lalista[derecha] <- lalista[pivoteLoc] <br>
+								lalista[pivoteLoc] <- aux2 <br>
+								Devolver pivoteLoc <br>
 								FinFuncion <br>
 							</p>
 						</div>
