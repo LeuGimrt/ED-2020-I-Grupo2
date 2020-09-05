@@ -2,7 +2,7 @@ var list = new Array();
 var data;
 
 function setList(list){
-    let arr = prompt("Ingrese el numero de elementos del arreglo: ")
+    let arr = prompt("Ingrese el numero de elementos del arreglo: ");
     for(let index = 0; index < arr; index++){
         list[index] = prompt("Ingrese el elemento " + index + " del arreglo");
     }
@@ -45,34 +45,36 @@ function linearSearch(list, data){
     return i;
 }
 
-function quickSelect(list, left, right, k){
-    let pivot;
-    if(left == right){
-        return list[left];
-    }    
-    pivot = (list, left, right) => {
+function quickSelect(list, left, right, data){
+    list.sort();
+    if(data==null)
+        data = prompt("Ingrese el valor a buscar: ");
+    
+    part= (list, left, right) => {
         let i;
-        let j;
-        let x;
-        let t;
-        for(j=left; j<=right; j++){
-            if(list[j] <= x){
-                t = list[i];
-                list[i] = list[j];
-                list[j] = t;
-                i++;
+        let pivot = list[right];
+        let pivotLoc = left;
+        let aux;
+        let aux2;
+        for(i=left; i<=right; i++){
+            if(list[i] <= pivot){
+                aux = list[i];
+                list[i] = list[pivotLoc];
+                list[pivotLoc] = aux;
+                pivotLoc++;
             }
         }
-        t = list[i];
-        list[i] = list[right];
-        list[right] = t;
-        return i;
+        aux2 = list[right];
+        list[right] = list[pivotLoc];
+        list[pivotLoc] = aux2;
+        return pivotLoc;
     }
 
-    if(k == pivot){
-        right = pivot - 1;
+    if(part == datat){
+        return list[part]
     }
     else {
-        left = pivot + 1;
+        (part < data) ? quickSelect(list, part+1, right, data):
+        quickSelect(list, left, part-1, data);
     }
 }	
