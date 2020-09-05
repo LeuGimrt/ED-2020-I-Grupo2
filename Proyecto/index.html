@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css">
 	
-	
+		<script src="searchAlgorithms.js"></script>
 		<script src="https://kit.fontawesome.com/4527196161.js" crossorigin="anonymous"></script>
 	
 		<!-- BOOTSTRAP JS -->
@@ -65,26 +65,30 @@
 				  <div id="home" class="container tab-pane active"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
-							
+							<form >
+								<button class="go" id="binary-go" onclick="setList(list); alert('El valor está en la posición: '+binarySearch(list, data))">
+									Go!</button><br>
+							</form>
 						</div>
 						<div class="col-12 col-md-4">
 							<p class="Binary">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion binarySearch(list lalista,entero dato) <br>
+								Funcion entero binarySearch(entero arr[],entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir menor como entero <br>
 								Definir mayor como entero <br>
 								Definir centro como entero <br>
 								Inicio <br>
-								mayor <- tamaño(lalista) - 1 <br>
+								menor <- 0 <br>
+								mayor <- tamaño(arr) - 1 <br>
 								Mientras (menor <= mayor)<br>
-								&nbsp;	centro <- (menor + mayor)/2
+								&nbsp;	centro <- (menor + mayor)/2 <br>
 								FinMientras<br>
-								Si (lalista[centro] == dato) entonces<br>
+								Si (arr[centro] == dato) entonces<br>
 								&nbsp;	Devolver centro<br>
 								SiNo <br>
-								&nbsp;	Si(lalista[centro] < dato) entonces <br>
+								&nbsp;	Si(arr[centro] < dato) entonces <br>
 								&nbsp;&nbsp;		menor <- centro + 1 <br>
 								&nbsp;	SiNo <br>
 								&nbsp;&nbsp;		mayor <- centro - 1 <br>
@@ -102,21 +106,25 @@
 				  <div id="menu1" class="container tab-pane fade"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
-
+							<form>
+								<button class="go" id="linear-go" onclick="setList(list); alert('El valor está en la posición: '+linearSearch(list, data))">
+									Go!
+								</button>	
+							</form>
 						</div>
 						<div class="col-12 col-md-4">
 							<p class="Linear">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero linearSearch(list lalista,entero dato) <br>
+								Funcion entero linearSearch(entero arr[],entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir i como entero <br>
 								Inicio <br>
 								i <- 0 <br>
-								Mientras (i < tamaño(lalista) y lalista[i] < dato)<br>
+								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
 								&nbsp;	i <- i+1<br>
 								FinMientras<br>
-								Si (i >= tamaño(lalista) o lalista[i] != dato) entonces<br>
+								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
 								&nbsp;	Devolver -1<br>
 								FinSi<br>
 								Devolver i<br>
@@ -129,46 +137,53 @@
 				  <!--QuickSelect-->
 				  <div id="menu2" class="container tab-pane fade"><br>
 					<div class="row">
-						<div class="col-12 col-md-8 animacion">
-
+						<div class="col-12 col-md-7 animacion">
+							<form>
+								<button class="go" id="select-go">Go!</button>
+							</form>
 						</div>
-						<div class="col-12 col-md-4">
+						<div class="col-12 col-md-5">
 							<p class="Quick">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
+								Funcion entero quickSelect(entero arr[],entero izquierda,entero derecha, entero k) <br>
 								<br>
 								D.V. <br>
-								Definir pivote como entero<br>
+								Definir part como entero<br>
 								Inicio <br>
-								Si (izquierda == derecha) entonces <br>
-								&nbsp;	Devolver lalista[izquierda] <br>
-								FinSi
-								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
-								Si (k = pivote) entonces <br>
-								&nbsp;	Devolver lalista[k] <br>
+								part <- particion(arr,izquierda,derecha) <br>
+								Si (part == k) entonces <br>
+								&nbsp;	Devolver arr[part] <br>
 								SiNo <br>
-								&nbsp;	Si (k < pivote) <br>
-								&nbsp;&nbsp;		derecha = pivote - 1 <br>
-								&nbsp;	SiNo <br>
-								&nbsp;&nbsp;		izquierda = pivote + 1 <br>
+								&nbsp;&nbsp;		Si (particion < k) entonces<br>
+								&nbsp;&nbsp;		Devolver quickSelect(arr,part + 1,derecha,k) <br>
 								&nbsp;	FinSi <br>
+								SiNo <br>
+								&nbsp;	Devolver quickSelect(arr, izquierda,part - 1,k) <br>
 								FinSi <br>
-								FinFuncion<br>
+								FinFuncion<br><br>
 
-								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
+								Funcion entero particion(entero arr[],entero izquierda,entero derecha) <br>
 								D.V. <br>
 								Definir i como entero <br>
-								Definir j como entero <br>
-								Definir x como arreglo <br>
+								Definir pivote como entero <br>
+								Definir pivoteLoc como entero <br>
+								Definir aux como entero <br>
+								Definir aux2 como entero <br>
 								Inicio <br>
-								Para j de izquierda hasta derecha con paso 1 
-								&nbsp;	Si (lalista[j] <= x) entonces <br>
-								&nbsp;&nbsp;		swap(lalista[i], lalista[j]) <br>
-								&nbsp;&nbsp;		i <- i + 1 <br>
+								pivote <- arr[derecha] <br>
+								pivoteLoc <- izquierda <br>
+								Para i de izquierda hasta derecha  con paso 1 <br>
+								&nbsp;	Si (arr[i] <= pivote) entonces <br>
+								&nbsp;&nbsp;&nbsp;		aux <- arr[i] <br>
+								&nbsp;&nbsp;&nbsp;		arr[i] <- arr[pivoteLoc] <br>
+								&nbsp;&nbsp;&nbsp;		arr[pivoteLoc] <- aux <br>
+								&nbsp;&nbsp;&nbsp;		pivoteLoc <- pivoteLoc + 1 <br>
 								&nbsp;	FinSi <br>
 								FinPara <br>
-								swap(lalista[i], lalista[derecha]) <br>
-								Devolver i 
+								aux2 <- arr[derecha] <br>
+								arr[derecha] <- arr[pivoteLoc] <br>
+								arr[pivoteLoc] <- aux2 <br>
+								Devolver pivoteLoc <br>
 								FinFuncion <br>
 							</p>
 						</div>
