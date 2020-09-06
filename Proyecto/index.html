@@ -8,14 +8,11 @@
 		<link rel="icon" href="img/UNMSM logo.jpg"/>
 		
 		<!--  Fuentes/Tipografías  -->
-		<link 
-			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" 
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
 		<!---->
 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css">
 	
 		<script src="searchAlgorithms.js"></script>
 		<script src="https://kit.fontawesome.com/4527196161.js" crossorigin="anonymous"></script>
@@ -24,11 +21,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
-		<script src="bootstrap/js/bootstrap-select.min.js"></script>
-
 
 		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/responisve.css" />
 		<title>Busqueda</title>
 	</head>
 	
@@ -44,7 +38,7 @@
 		<!--CONTENIDO-->
 		<main>
 
-			<div class="container">
+			<div class="contenedor">
 				
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
@@ -62,16 +56,16 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<!--Binary Search-->
-				  <div id="home" class="container tab-pane active"><br>
+				  <div id="home" class="tab-pane active"><br>
 					<div class="row">
-						<div class="col-12 col-md-8 animacion">
+						<div class="col-12 col-lg-8 animacion">
 							<form >
 								<button class="go" id="binary-go" onclick="setList(list); alert('El valor está en la posición: '+binarySearch(list, data))">
 									Go!</button><br>
 							</form>
 						</div>
-						<div class="col-12 col-md-4">
-							<p class="Binary">
+						<div class="col-12 col-lg-4">
+							<p class="Binary pseudo">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero binarySearch(entero arr[],entero dato) <br>
 								<br>
@@ -80,18 +74,18 @@
 								Definir mayor como entero <br>
 								Definir centro como entero <br>
 								Inicio <br>
-								menor <- 0 <br>
-								mayor <- tamaño(arr) - 1 <br>
-								Mientras (menor <= mayor)<br>
-								&nbsp;	centro <- (menor + mayor)/2 <br>
+								menor &larr; 0 <br>
+								mayor &larr; tamaño(arr) - 1 <br>
+								Mientras (menor &lt;= mayor)<br>
+								&nbsp;	centro &larr; (menor + mayor)/2 <br>
 								FinMientras<br>
 								Si (arr[centro] == dato) entonces<br>
 								&nbsp;	Devolver centro<br>
 								SiNo <br>
-								&nbsp;	Si(arr[centro] < dato) entonces <br>
-								&nbsp;&nbsp;		menor <- centro + 1 <br>
+								&nbsp;	Si(arr[centro] &lt; dato) entonces <br>
+								&nbsp;&nbsp;		menor &larr; centro + 1 <br>
 								&nbsp;	SiNo <br>
-								&nbsp;&nbsp;		mayor <- centro - 1 <br>
+								&nbsp;&nbsp;		mayor &larr; centro - 1 <br>
 								&nbsp;	FinSi <br>
 								FinSi<br>
 								Devolver -1<br>
@@ -103,7 +97,7 @@
 
 
 				  <!--Linear Search-->
-				  <div id="menu1" class="container tab-pane fade"><br>
+				  <div id="menu1" class="tab-pane fade"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
 							<form>
@@ -113,16 +107,16 @@
 							</form>
 						</div>
 						<div class="col-12 col-md-4">
-							<p class="Linear">
+							<p class="Linear pseudo">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero linearSearch(entero arr[],entero dato) <br>
 								<br>
 								D.V. <br>
 								Definir i como entero <br>
 								Inicio <br>
-								i <- 0 <br>
-								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
-								&nbsp;	i <- i+1<br>
+								i &larr 0 <br>
+								Mientras (i &lt; tamaño(arr) y arr[i] &lt; dato)<br>
+								&nbsp;	i &larr; i+1<br>
 								FinMientras<br>
 								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
 								&nbsp;	Devolver -1<br>
@@ -135,27 +129,27 @@
 				  </div>
 
 				  <!--QuickSelect-->
-				  <div id="menu2" class="container tab-pane fade"><br>
+				  <div id="menu2" class="tab-pane fade"><br>
 					<div class="row">
-						<div class="col-12 col-md-7 animacion">
+						<div class="col-12 col-lg-7 animacion">
 							<form>
 								<button class="go" id="select-go" onclick="setList(list); 
 								alert('El valor está en la posición: '+quickSelect(list, list[0], list[length-1], data))">Go!</button>
 							</form>
 						</div>
-						<div class="col-12 col-md-5">
-							<p class="Quick">
+						<div class="col-12 col-lg-5">
+							<p class="Quick pseudo">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero quickSelect(entero arr[],entero izquierda,entero derecha, entero k) <br>
 								<br>
 								D.V. <br>
 								Definir part como entero<br>
 								Inicio <br>
-								part <- particion(arr,izquierda,derecha) <br>
+								part &larr; particion(arr,izquierda,derecha) <br>
 								Si (part == k) entonces <br>
 								&nbsp;	Devolver arr[part] <br>
 								SiNo <br>
-								&nbsp;&nbsp;		Si (particion < k) entonces<br>
+								&nbsp;&nbsp;		Si (particion &lt; k) entonces<br>
 								&nbsp;&nbsp;		Devolver quickSelect(arr,part + 1,derecha,k) <br>
 								&nbsp;	FinSi <br>
 								SiNo <br>
@@ -171,19 +165,19 @@
 								Definir aux como entero <br>
 								Definir aux2 como entero <br>
 								Inicio <br>
-								pivote <- arr[derecha] <br>
-								pivoteLoc <- izquierda <br>
+								pivote &larr; arr[derecha] <br>
+								pivoteLoc &larr; izquierda <br>
 								Para i de izquierda hasta derecha  con paso 1 <br>
 								&nbsp;	Si (arr[i] <= pivote) entonces <br>
-								&nbsp;&nbsp;&nbsp;		aux <- arr[i] <br>
-								&nbsp;&nbsp;&nbsp;		arr[i] <- arr[pivoteLoc] <br>
-								&nbsp;&nbsp;&nbsp;		arr[pivoteLoc] <- aux <br>
-								&nbsp;&nbsp;&nbsp;		pivoteLoc <- pivoteLoc + 1 <br>
+								&nbsp;&nbsp;&nbsp;		aux &larr; arr[i] <br>
+								&nbsp;&nbsp;&nbsp;		arr[i] &larr; arr[pivoteLoc] <br>
+								&nbsp;&nbsp;&nbsp;		arr[pivoteLoc] &larr; aux <br>
+								&nbsp;&nbsp;&nbsp;		pivoteLoc &larr; pivoteLoc + 1 <br>
 								&nbsp;	FinSi <br>
 								FinPara <br>
-								aux2 <- arr[derecha] <br>
-								arr[derecha] <- arr[pivoteLoc] <br>
-								arr[pivoteLoc] <- aux2 <br>
+								aux2 &larr; arr[derecha] <br>
+								arr[derecha] &larr; arr[pivoteLoc] <br>
+								arr[pivoteLoc] &larr; aux2 <br>
 								Devolver pivoteLoc <br>
 								FinFuncion <br>
 							</p>

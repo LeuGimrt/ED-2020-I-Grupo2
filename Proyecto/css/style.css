@@ -13,6 +13,11 @@ body {
     justify-content: space-around;
 }
 
+.contenedor {
+    width: 85%;
+    margin: 0 auto;
+}
+
 header h1 {
     margin-left: 10%;
     color: rgb(166, 0, 12);
@@ -28,7 +33,7 @@ header h1 {
 }
 
 .animacion {
-    height: 500px;
+    height: 700px;
     background-color: #240c8b;
 }
 
@@ -60,6 +65,10 @@ main {
     margin: auto;
     border: solid;
     border-radius: 20px;
+}
+
+.pseudo {
+    font-family: 'Roboto Mono', monospace;
 }
 
 .pie_de_página{
