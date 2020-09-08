@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!--  Icolo de la página  -->
+		<link rel="icon" href="img/UNMSM logo.jpg"/>
+		
+		<!--  Fuentes/Tipografías  -->
+		<link 
+			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" 
+			rel="stylesheet"
+		/>
+		<!---->
+
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css">
+	
+		
+		<script src="https://kit.fontawesome.com/4527196161.js" crossorigin="anonymous"></script>
+	
+		<!-- BOOTSTRAP JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="bootstrap/js/bootstrap-select.min.js"></script>
+
+
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/responisve.css" />
+		<title>Busqueda</title>
+	</head>
+	
+	<body>
+		<!--HEADER-->
+		<header>
+			<div class="titulo">
+				<h1> Algoritmos de Busqueda Grupo 2</h1>
+				<img src="img/UNMSM_Escudo_y_Nombre.png" class="img-fluid">
+			</div>
+			<div class="borde"></div>
+		</header>
+		<!--CONTENIDO-->
+		<main>
+
+			<div class="container">
+				<div class="input">
+					<button class="go" onclick="getNumElementos(), setList(list);">Llenar Arreglo</button> <br>
+					<label for="numElementos">Numero de Elementos:</label>
+					<input type="number" name="numElementos" class="num" id="numElementos" value="">
+					<label for="min">Mínimo: </label>
+					<input type="number" name="min" class="num" id="min">
+					<label for="max">Máximo: </label>
+					<input type="number" name="max" class="num" id="max">
+				</div>		
+					<div class="error" id="error-1"></div>
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+					<a class="nav-link active" data-toggle="tab" href="#home">Binary Search</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#menu1">Linear Search</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" data-toggle="tab" href="#menu2">Quick Select</a>
+				  </li>
+				</ul>
+			  
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!--Binary Search-->
+				  <div id="home" class="container tab-pane active"><br>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Binary">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion entero binarySearch(entero arr[],entero dato) <br>
+								<br>
+								D.V. <br>
+								Definir menor como entero <br>
+								Definir mayor como entero <br>
+								Definir centro como entero <br>
+								Inicio <br>
+								menor <- 0 <br>
+								mayor <- tamaño(arr) - 1 <br>
+								Mientras (menor <= mayor)<br>
+								&nbsp;	centro <- (menor + mayor)/2 <br>
+								FinMientras<br>
+								Si (arr[centro] == dato) entonces<br>
+								&nbsp;	Devolver centro<br>
+								SiNo <br>
+								&nbsp;	Si(arr[centro] < dato) entonces <br>
+								&nbsp;&nbsp;		menor <- centro + 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		mayor <- centro - 1 <br>
+								&nbsp;	FinSi <br>
+								FinSi<br>
+								Devolver -1<br>
+								FinFuncion<br>
+							</p>
+						</div>
+						<div class="buscar">
+							<label for="valor-buscar">Valor a Buscar: </label>
+							<input type="number" name="valor-buscar" class="num" id="valor-buscarB">
+							<button class="go" onclick="var bS = binarySearch(list, data);
+														console.log('Indice: ' + bS);
+														if(bS==-1)
+															document.getElementById('error-2b').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+						</div>
+						<div class="error" id="error-2b"></div>
+					</div>
+				  </div>
+
+
+				  <!--Linear Search-->
+				  <div id="menu1" class="container tab-pane fade"><br>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Linear">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion entero linearSearch(entero arr[],entero dato) <br>
+								<br>
+								D.V. <br>
+								Definir i como entero <br>
+								Inicio <br>
+								i <- 0 <br>
+								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
+								&nbsp;	i <- i+1<br>
+								FinMientras<br>
+								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
+								&nbsp;	Devolver -1<br>
+								FinSi<br>
+								Devolver i<br>
+								FinFuncion<br>
+							</p>
+						</div>
+						<div class="buscar">
+							<label for="valor-buscar">Valor a Buscar: </label>
+							<input type="number" name="valor-buscar" class="num" id="valor-buscarL">
+							<button class="go" onclick="var lS = linearSearch(list, data);
+														console.log('Indice: ' + S);
+														if(bS==-1)
+															document.getElementById('error-2l').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+						</div>
+						<div class="error" id="error-2l"></div>
+					</div>
+				  </div>
+
+				  <!--QuickSelect-->
+				  <div id="menu2" class="container tab-pane fade"><br>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Quick">
+								<b><u>Pseudocódigo</u></b> <br>
+								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
+								<br>
+								D.V. <br>
+								Definir pivote como entero<br>
+								Inicio <br>
+								Si (izquierda == derecha) entonces <br>
+								&nbsp;	Devolver lalista[izquierda] <br>
+								FinSi
+								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
+								Si (k = pivote) entonces <br>
+								&nbsp;	Devolver lalista[k] <br>
+								SiNo <br>
+								&nbsp;	Si (k < pivote) <br>
+								&nbsp;&nbsp;		derecha = pivote - 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		izquierda = pivote + 1 <br>
+								&nbsp;	FinSi <br>
+								FinSi <br>
+								FinFuncion<br>
+
+								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
+								D.V. <br>
+								Definir i como entero <br>
+								Definir j como entero <br>
+								Definir x como arreglo <br>
+								Inicio <br>
+								Para j de izquierda hasta derecha con paso 1 
+								&nbsp;	Si (lalista[j] <= x) entonces <br>
+								&nbsp;&nbsp;		swap(lalista[i], lalista[j]) <br>
+								&nbsp;&nbsp;		i <- i + 1 <br>
+								&nbsp;	FinSi <br>
+								FinPara <br>
+								swap(lalista[i], lalista[derecha]) <br>
+								Devolver i 
+								FinFuncion <br>
+							</p>
+						</div>
+					</div>
+				  </div>
+					
+				  </div>
+				  
+				</div>
+				
+			  </div>
+		</main>
+		<!--FOOTER-->
+		<div class="borde"></div>
+		<footer class="pie_de_página">
+			<div class="integrantes"> <h2>Integrantes</h2></div>
+			<!--Daniel-->
+			<div class="integrante">
+				<h3>Daniel Cifuentes</h3>
+				<span>Código: 18200125</span>
+			</div>
+			<!--Edward-->
+			<div class="integrante">
+				<h3>Edward Ramos</h3>
+				<span>Código: 18200288</span>
+			</div>
+			<!--Miguel-->
+			<div class="integrante">
+				<h3>Miguel Rodriguez</h3>
+				<span>Código: 18200290</span>
+			</div>
+			<!--Arian-->
+			<div class="integrante">
+				<h3>Arian Zambrano</h3>
+				<span>Código: 18200107</span>
+			</div>
+		</footer>
+	</body>
+	<script defer type="text/javascript" src="searchAlgorithms.js"></script>
+
+</html>

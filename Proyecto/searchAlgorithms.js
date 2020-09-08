@@ -1,21 +1,33 @@
 var list = new Array();
 var data;
 
+function getNumElementos(){
+    list.length = document.getElementById('numElementos').value;
+    console.log("Tamaño del arreglo: " + list.length);
+}
+
+
 function setList(list){
-    let arr = prompt("Ingrese el numero de elementos del arreglo: ");
-    for(let index = 0; index < arr; index++){
-        list[index] = prompt("Ingrese el elemento " + index + " del arreglo");
+    let min = document.getElementById('min').value;
+    let max = document.getElementById('max').value;
+    if(max/10 < min/10)
+        document.getElementById('error-1').innerHTML = "Error: Mínimo no puede ser mayor que máximo";
+    else{
+        document.getElementById('error-1').innerHTML = "";
+        for(let index = 0; index < list.length; index++){
+            list[index] = Math.floor(Math.random() * (max - min) + min);
+        }
+        list.sort(((a, b) => a - b));
+        console.log("Elementos(Arreglo Ordenado): (" + min + "," + max + ")");
+        for(index = 0; index < list.length; index++){
+            console.log(list[index]);
+        } 
     }
-    
-    for(index = 0; index < arr; index++){
-        console.log(list[index]);
-    }      
 }
 
 function binarySearch(list, data) {
-    list.sort();
-    data = prompt("Ingrese el valor a buscar: ");
-    console.log(data);
+    data = document.getElementById('valor-buscarB').value;
+    console.log("Valor a buscar: " + data);
     let min = 0,
     max = list.length - 1;
     while (min <= max){
@@ -30,9 +42,8 @@ function binarySearch(list, data) {
 }
 
 function linearSearch(list, data){
-    list.sort();
-    data = prompt("Ingrese el valor a buscar: ");
-    console.log(data);
+    data = document.getElementById('valor-buscarL').value;
+    console.log("Valor a buscar: " + data);
     let i = 0;
     while(i < list.length && list[i] < data){
         console.log("Paso");
@@ -77,4 +88,4 @@ function quickSelect(list, left, right, data){
         (part < data) ? quickSelect(list, part+1, right, data):
         quickSelect(list, left, part-1, data);
     }
-}	
+}		
