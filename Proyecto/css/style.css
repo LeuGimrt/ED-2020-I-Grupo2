@@ -41,6 +41,25 @@ main {
     flex: 1 1 auto;
 }
 
+.input{
+    display: inline;
+}
+.go{
+    margin: 10px 0;
+}
+
+.num{
+    width: 50px;
+    margin: 10px 20px;
+}
+
+.error{
+    text-align: center;
+    display: inline;
+    margin-left: 50px;
+    color: red;
+}
+
 .Binary{
     padding: 10px;
     margin: auto;
@@ -60,6 +79,10 @@ main {
     margin: auto;
     border: solid;
     border-radius: 20px;
+}
+
+.buscar{
+    display: inline;
 }
 
 .pie_de_página{
