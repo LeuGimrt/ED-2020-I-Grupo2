@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css">
 	
-		<script src="searchAlgorithms.js"></script>
+		
 		<script src="https://kit.fontawesome.com/4527196161.js" crossorigin="anonymous"></script>
 	
 		<!-- BOOTSTRAP JS -->
@@ -45,7 +45,16 @@
 		<main>
 
 			<div class="container">
-				
+				<div class="input">
+					<button class="go" onclick="getNumElementos(), setList(list);">Llenar Arreglo</button> <br>
+					<label for="numElementos">Numero de Elementos:</label>
+					<input type="number" name="numElementos" class="num" id="numElementos" value="">
+					<label for="min">Mínimo: </label>
+					<input type="number" name="min" class="num" id="min">
+					<label for="max">Máximo: </label>
+					<input type="number" name="max" class="num" id="max">
+				</div>		
+					<div class="error" id="error-1"></div>
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 				  <li class="nav-item">
@@ -65,10 +74,7 @@
 				  <div id="home" class="container tab-pane active"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
-							<form >
-								<button class="go" id="binary-go" onclick="setList(list); alert('El valor está en la posición: '+binarySearch(list, data))">
-									Go!</button><br>
-							</form>
+
 						</div>
 						<div class="col-12 col-md-4">
 							<p class="Binary">
@@ -98,6 +104,15 @@
 								FinFuncion<br>
 							</p>
 						</div>
+						<div class="buscar">
+							<label for="valor-buscar">Valor a Buscar: </label>
+							<input type="number" name="valor-buscar" class="num" id="valor-buscarB">
+							<button class="go" onclick="var bS = binarySearch(list, data);
+														console.log('Indice: ' + bS);
+														if(bS==-1)
+															document.getElementById('error-2b').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+						</div>
+						<div class="error" id="error-2b"></div>
 					</div>
 				  </div>
 
@@ -106,11 +121,7 @@
 				  <div id="menu1" class="container tab-pane fade"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
-							<form>
-								<button class="go" id="linear-go" onclick="setList(list); alert('El valor está en la posición: '+linearSearch(list, data))">
-									Go!
-								</button>	
-							</form>
+
 						</div>
 						<div class="col-12 col-md-4">
 							<p class="Linear">
@@ -131,66 +142,71 @@
 								FinFuncion<br>
 							</p>
 						</div>
+						<div class="buscar">
+							<label for="valor-buscar">Valor a Buscar: </label>
+							<input type="number" name="valor-buscar" class="num" id="valor-buscarL">
+							<button class="go" onclick="var lS = linearSearch(list, data);
+														console.log('Indice: ' + lS);
+														if(bS==-1)
+															document.getElementById('error-2l').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+						</div>
+						<div class="error" id="error-2l"></div>
 					</div>
 				  </div>
 
 				  <!--QuickSelect-->
 				  <div id="menu2" class="container tab-pane fade"><br>
 					<div class="row">
-						<div class="col-12 col-md-7 animacion">
-							<form>
-								<button class="go" id="select-go" onclick="setList(list); 
-								alert('El valor está en la posición: '+quickSelect(list, list[0], list[length-1], data))">Go!</button>
-							</form>
+						<div class="col-12 col-md-8 animacion">
+
 						</div>
-						<div class="col-12 col-md-5">
+						<div class="col-12 col-md-4">
 							<p class="Quick">
 								<b><u>Pseudocódigo</u></b> <br>
-								Funcion entero quickSelect(entero arr[],entero izquierda,entero derecha, entero k) <br>
+								Funcion entero quickSelect(list lalista,entero izquierda,entero derecha, entero k) <br>
 								<br>
 								D.V. <br>
-								Definir part como entero<br>
+								Definir pivote como entero<br>
 								Inicio <br>
-								part <- particion(arr,izquierda,derecha) <br>
-								Si (part == k) entonces <br>
-								&nbsp;	Devolver arr[part] <br>
+								Si (izquierda == derecha) entonces <br>
+								&nbsp;	Devolver lalista[izquierda] <br>
+								FinSi
+								pivote <- particion(lalista,izquierda,derecha,pivote) <br>
+								Si (k = pivote) entonces <br>
+								&nbsp;	Devolver lalista[k] <br>
 								SiNo <br>
-								&nbsp;&nbsp;		Si (particion < k) entonces<br>
-								&nbsp;&nbsp;		Devolver quickSelect(arr,part + 1,derecha,k) <br>
+								&nbsp;	Si (k < pivote) <br>
+								&nbsp;&nbsp;		derecha = pivote - 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		izquierda = pivote + 1 <br>
 								&nbsp;	FinSi <br>
-								SiNo <br>
-								&nbsp;	Devolver quickSelect(arr, izquierda,part - 1,k) <br>
 								FinSi <br>
-								FinFuncion<br><br>
+								FinFuncion<br>
 
-								Funcion entero particion(entero arr[],entero izquierda,entero derecha) <br>
+								Funcion entero particion(list lalista,entero izquierda,entero derecha) <br>
 								D.V. <br>
 								Definir i como entero <br>
-								Definir pivote como entero <br>
-								Definir pivoteLoc como entero <br>
-								Definir aux como entero <br>
-								Definir aux2 como entero <br>
+								Definir j como entero <br>
+								Definir x como arreglo <br>
 								Inicio <br>
-								pivote <- arr[derecha] <br>
-								pivoteLoc <- izquierda <br>
-								Para i de izquierda hasta derecha  con paso 1 <br>
-								&nbsp;	Si (arr[i] <= pivote) entonces <br>
-								&nbsp;&nbsp;&nbsp;		aux <- arr[i] <br>
-								&nbsp;&nbsp;&nbsp;		arr[i] <- arr[pivoteLoc] <br>
-								&nbsp;&nbsp;&nbsp;		arr[pivoteLoc] <- aux <br>
-								&nbsp;&nbsp;&nbsp;		pivoteLoc <- pivoteLoc + 1 <br>
+								Para j de izquierda hasta derecha con paso 1 
+								&nbsp;	Si (lalista[j] <= x) entonces <br>
+								&nbsp;&nbsp;		swap(lalista[i], lalista[j]) <br>
+								&nbsp;&nbsp;		i <- i + 1 <br>
 								&nbsp;	FinSi <br>
 								FinPara <br>
-								aux2 <- arr[derecha] <br>
-								arr[derecha] <- arr[pivoteLoc] <br>
-								arr[pivoteLoc] <- aux2 <br>
-								Devolver pivoteLoc <br>
+								swap(lalista[i], lalista[derecha]) <br>
+								Devolver i 
 								FinFuncion <br>
 							</p>
 						</div>
 					</div>
 				  </div>
+					
+				  </div>
+				  
 				</div>
+				
 			  </div>
 		</main>
 		<!--FOOTER-->
@@ -219,4 +235,6 @@
 			</div>
 		</footer>
 	</body>
+	<script defer type="text/javascript" src="searchAlgorithms.js"></script>
+
 </html>
