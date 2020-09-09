@@ -30,6 +30,27 @@ header h1 {
 .animacion {
     height: 500px;
     background-color: #240c8b;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+.grafico {
+    flex: 1 1 auto;
+    width: 95%;
+    color: #fcfcf4;
+    font-size: 3em;
+    margin:10px;
+    height: 70%;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+.resultados {
+    align-self: center;
+    flex: 1 1 auto;
+    width: 70%;
+    margin:10px;
+    height: 10%;
+    background-color: gray;
 }
 
 main {
