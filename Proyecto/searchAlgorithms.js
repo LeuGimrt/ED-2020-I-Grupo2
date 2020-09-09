@@ -228,9 +228,9 @@ function exeQuick(list){
 function escribirLista(list){
     let content = "";
     for (let index = 0; index < list.length - 1; index++) {
-        content = content + list[index] + " -> ";
+        content = content + "<div class=\"col-2 cuadro\">" +  list[index] + "</div>";
     }
-    content = content  + list[list.length-1];
+    content = content + "<div class=\"col-2 cuadro\">" + list[list.length-1] + "</div>";
 
     document.getElementById("contenidografico-b").innerHTML = content;
     document.getElementById("contenidografico-l").innerHTML = content;
