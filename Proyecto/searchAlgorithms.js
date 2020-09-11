@@ -58,7 +58,7 @@ function setList(list){
         else{
             document.getElementById('error-1').innerHTML = "";
             for(let index = 0; index < list.length; index++){
-                list[index] = Math.floor(Math.random() * (max - min) + min);
+                list[index] = Math.floor(Math.random()*(maxVal-minVal+1)+minVal);
             }
             console.log("Elementos: (" + min + "," + max + ")");
             for(index = 0; index < list.length; index++){
@@ -71,6 +71,7 @@ function setList(list){
 // B L O Q U E   2           +
 //++++++++++++++++++++++++++++
 //SOLO LÓGICA!!! de las búsquedas y devolverán la posición o valor (en caso de Quick) o -1 en caso no encontrar
+var cont;
 function binarySearch(list, data) {
     let min = 0,
     max = list.length - 1;
@@ -79,7 +80,8 @@ function binarySearch(list, data) {
         if (list[center] == data ){
             return center;
         } 
-        (list[center] < data) ? min = center + 1 : max = center - 1;
+        (list[center] < data) ? min = center + 1 : max = center - 1; 
+        console.log(list[center]);
     }
     return -1;
 }
@@ -97,7 +99,6 @@ function linearSearch(list, data){
 }
 
 function quickSelect(list, left, right, data){
-    /*list.sort();
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
     
@@ -120,14 +121,28 @@ function quickSelect(list, left, right, data){
         list[pivotLoc] = aux2;
         return pivotLoc;
     }
-
-    if(part == datat){
+    if(part == data){
         return list[part]
     }
     else {
         (part < data) ? quickSelect(list, part+1, right, data):
         quickSelect(list, left, part-1, data);
     }*/
+    return 1;
+}
+//++++++++++++++++++++++++++++
+// B L O Q U E   3           +
+//++++++++++++++++++++++++++++
+//Control de las ejecuciones de cada una de las búsquedas y activación de los otros procesos
+function exeBinaria(list){
+    data = document.getElementById('valor-buscarB').value;
+    let dataVal = validar(data);
+    if(dataVal == -1){
+        document.getElementById('error-2b').innerHTML = "Error: Valor a buscar vacío";
+    }
+    else if(dataVal == -2){
+        document.getElementById('error-2b').innerHTML = "Error: Valor a buscar debe ser entero";
+    }
     return 1;
 }
 //++++++++++++++++++++++++++++
@@ -152,16 +167,18 @@ function exeBinaria(list){
         
         //ordenamiento previo
         list.sort(((a, b) => a - b));
+        
         //mostrar ordenamiento
-        let content = "";
-        for (let index = 0; index < list.length - 1; index++) {
+        //let content = "";
+        /*for (let index = 0; index < list.length - 1; index++) {
             content = content + list[index] + " -> ";
         }
         content = content  + list[list.length-1];
-        document.getElementById("contenidografico-b").innerHTML = content;
+        document.getElementById("contenidografico-b").innerHTML = content;*/
         //fin de ordenamiento previo
 
         let Bs = binarySearch(list, data);
+        escribirLista(list, Bs);
         if(Bs == -1){
             document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
         }
@@ -187,6 +204,7 @@ function exeLinear(list){
         document.getElementById('error-2l').innerHTML = "";
         console.log("Valor a buscar: " + data);
         let Ls = linearSearch(list, data);
+        escribirLista(list, Ls);
         if(Ls == -1){
             document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
         }
@@ -215,7 +233,8 @@ function exeQuick(list){
         }else{
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
-            let Qs = quickSelect(list,0,lista.length, data);
+            let Qs = quickSelect(list,0,list.length-1, data);
+            escribirLista(list, search);
             console.log("valor de posición "+ data +" es: " + Qs);
         }
     }
@@ -225,11 +244,17 @@ function exeQuick(list){
 // B L O Q U E   4           +
 //++++++++++++++++++++++++++++
 //Funciones auxiliares o extra
-function escribirLista(list){
+function escribirLista(list, search){
     let content = "";
     for (let index = 0; index < list.length - 1; index++) {
+        if(search == index)
+            content = content + "<div class=\"col-2 cuadro-encontrado\">" +  list[index] + "</div>";
+        else
         content = content + "<div class=\"col-2 cuadro\">" +  list[index] + "</div>";
     }
+    if(search == list.length-1)
+    content = content + "<div class=\"col-2 cuadro-encontrado\">" + list[list.length-1] + "</div>";
+    else
     content = content + "<div class=\"col-2 cuadro\">" + list[list.length-1] + "</div>";
 
     document.getElementById("contenidografico-b").innerHTML = content;

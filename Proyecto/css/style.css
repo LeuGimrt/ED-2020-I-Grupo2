@@ -44,7 +44,7 @@ header h1 {
 }
 .grafico {
     color: #fcfcf4;
-    font-size: 3em;
+    font-size: 2em;
     width: 100%;
     padding: 20px;
     
@@ -60,9 +60,17 @@ header h1 {
 .cuadro {
     text-align: center;
     border: 2px solid #eee;
-    height: 80px;
+    height: 10%;
     margin: 15px 10px;
     background-color: rgb(0, 143, 143);
+}
+
+.cuadro-encontrado{
+    text-align: center;
+    border: 2px solid #eee;
+    height: 10%;
+    margin: 15px 10px;
+    background-color: rgb(7, 182, 30);
 }
 
 .resultados {
