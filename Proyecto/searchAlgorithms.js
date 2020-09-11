@@ -5,29 +5,6 @@
 var list = new Array();
 var data;
 
-<<<<<<< HEAD
-function getNumElementos(){
-    list.length = document.getElementById('numElementos').value;
-    console.log("Tamaño del arreglo: " + list.length);
-}
-
-
-function setList(list){
-    let min = document.getElementById('min').value;
-    let max = document.getElementById('max').value;
-    if(max/10 < min/10)
-        document.getElementById('error-1').innerHTML = "Error: Mínimo no puede ser mayor que máximo";
-    else{
-        document.getElementById('error-1').innerHTML = "";
-        for(let index = 0; index < list.length; index++){
-            list[index] = Math.floor(Math.random() * (max - min) + min);
-        }
-        list.sort(((a, b) => a - b));
-        console.log("Elementos(Arreglo Ordenado): (" + min + "," + max + ")");
-        for(index = 0; index < list.length; index++){
-            console.log(list[index]);
-        } 
-=======
 function validar(entrada){
     if(entrada == ""){
         return -1;//-1 = vacío
@@ -37,7 +14,6 @@ function validar(entrada){
     }
     else{
         return entrada;
->>>>>>> ArianZambrano_branch
     }
 }
 
@@ -97,11 +73,6 @@ function setList(list){
 //SOLO LÓGICA!!! de las búsquedas y devolverán la posición o valor (en caso de Quick) o -1 en caso no encontrar
 var cont;
 function binarySearch(list, data) {
-<<<<<<< HEAD
-    data = document.getElementById('valor-buscarB').value;
-    console.log("Valor a buscar: " + data);
-=======
->>>>>>> ArianZambrano_branch
     let min = 0,
     max = list.length - 1;
     while (min <= max){
@@ -116,11 +87,6 @@ function binarySearch(list, data) {
 }
 
 function linearSearch(list, data){
-<<<<<<< HEAD
-    data = document.getElementById('valor-buscarL').value;
-    console.log("Valor a buscar: " + data);
-=======
->>>>>>> ArianZambrano_branch
     let i = 0;
     while(i < list.length && list[i] < data){
         i++;
@@ -133,10 +99,6 @@ function linearSearch(list, data){
 }
 
 function quickSelect(list, left, right, data){
-<<<<<<< HEAD
-    list.sort();
-=======
->>>>>>> ArianZambrano_branch
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
     
@@ -159,21 +121,12 @@ function quickSelect(list, left, right, data){
         list[pivotLoc] = aux2;
         return pivotLoc;
     }
-<<<<<<< HEAD
-
-    if(part == datat){
-=======
     if(part == data){
->>>>>>> ArianZambrano_branch
         return list[part]
     }
     else {
         (part < data) ? quickSelect(list, part+1, right, data):
         quickSelect(list, left, part-1, data);
-<<<<<<< HEAD
-    }
-}		
-=======
     }
     return 1;
 }
@@ -293,4 +246,3 @@ function escribirLista(list, search){
     document.getElementById("contenidografico-l").innerHTML = content;
     document.getElementById("contenidografico-q").innerHTML = content;
 }
->>>>>>> ArianZambrano_branch

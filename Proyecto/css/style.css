@@ -13,28 +13,22 @@ body {
     justify-content: space-around;
 }
 
-<<<<<<< HEAD
-=======
 .contenedor {
     width: 85%;
     margin: 0 auto;
 }
 
->>>>>>> ArianZambrano_branch
 header h1 {
     margin-left: 10%;
     color: rgb(166, 0, 12);
     flex: 1 1 auto;
 }
 
-<<<<<<< HEAD
-=======
 .contenedor {
     width: 85%;
     margin: 0 auto;
 }
 
->>>>>>> ArianZambrano_branch
 .borde {
     width: 95%;
     min-width: 600px;   
@@ -44,10 +38,6 @@ header h1 {
 }
 
 .animacion {
-<<<<<<< HEAD
-    height: 500px;
-    background-color: #240c8b;
-=======
     height: 700px;
     background-color: #240c8b;
     display: flex;
@@ -90,7 +80,6 @@ header h1 {
     margin:10px;
     height: 10%;
     background-color: gray;
->>>>>>> ArianZambrano_branch
 }
 
 main {
