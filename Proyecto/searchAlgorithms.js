@@ -58,7 +58,7 @@ function setList(list){
         else{
             document.getElementById('error-1').innerHTML = "";
             for(let index = 0; index < list.length; index++){
-                list[index] = Math.floor(Math.random()*(maxVal-minVal+1)+min);
+                list[index] = Math.floor(Math.random()*(maxVal-minVal+1)+minVal);
             }
             console.log("Elementos: (" + min + "," + max + ")");
             for(index = 0; index < list.length; index++){
