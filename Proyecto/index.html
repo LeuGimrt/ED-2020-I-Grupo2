@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+  
+>>>>>>> ArianZambrano_branch
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -8,6 +12,7 @@
 		<link rel="icon" href="img/UNMSM logo.jpg"/>
 		
 		<!--  Fuentes/Tipografías  -->
+<<<<<<< HEAD
 		<link 
 			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" 
 			rel="stylesheet"
@@ -16,6 +21,13 @@
 
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css">
+=======
+		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+		<!---->
+
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+>>>>>>> ArianZambrano_branch
 	
 		
 		<script src="https://kit.fontawesome.com/4527196161.js" crossorigin="anonymous"></script>
@@ -24,11 +36,16 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 		<script src="bootstrap/js/bootstrap-select.min.js"></script>
 
 
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/responisve.css" />
+=======
+
+		<link rel="stylesheet" href="css/style.css" />
+>>>>>>> ArianZambrano_branch
 		<title>Busqueda</title>
 	</head>
 	
@@ -44,9 +61,15 @@
 		<!--CONTENIDO-->
 		<main>
 
+<<<<<<< HEAD
 			<div class="container">
 				<div class="input">
 					<button class="go" onclick="getNumElementos(), setList(list);">Llenar Arreglo</button> <br>
+=======
+			<div class="contenedor">
+				<div class="input">
+					<button class="go" onclick="getNumElementos(), setList(list), escribirLista(list);">Llenar Arreglo</button> <br>
+>>>>>>> ArianZambrano_branch
 					<label for="numElementos">Numero de Elementos:</label>
 					<input type="number" name="numElementos" class="num" id="numElementos" value="">
 					<label for="min">Mínimo: </label>
@@ -71,12 +94,26 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<!--Binary Search-->
+<<<<<<< HEAD
 				  <div id="home" class="container tab-pane active"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
 
 						</div>
 						<div class="col-12 col-md-4">
+=======
+				  <div id="home" class="tab-pane active"><br>
+					<div class="row">
+						<div class="col-12 col-lg-8 animacion">
+							<div class="grafico">
+								<div id="contenidografico-b" class="row"></div>
+							</div>
+							<!-- <div class="resultados">
+								
+							</div> -->
+						</div>
+						<div class="col-12 col-lg-4">
+>>>>>>> ArianZambrano_branch
 							<p class="Binary">
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero binarySearch(entero arr[],entero dato) <br>
@@ -86,18 +123,32 @@
 								Definir mayor como entero <br>
 								Definir centro como entero <br>
 								Inicio <br>
+<<<<<<< HEAD
 								menor <- 0 <br>
 								mayor <- tamaño(arr) - 1 <br>
 								Mientras (menor <= mayor)<br>
 								&nbsp;	centro <- (menor + mayor)/2 <br>
+=======
+								menor &larr; 0 <br>
+								mayor &larr; tamaño(arr) - 1 <br>
+								Mientras (menor &lt;= mayor)<br>
+								&nbsp;	centro &larr; (menor + mayor)/2 <br>
+>>>>>>> ArianZambrano_branch
 								FinMientras<br>
 								Si (arr[centro] == dato) entonces<br>
 								&nbsp;	Devolver centro<br>
 								SiNo <br>
+<<<<<<< HEAD
 								&nbsp;	Si(arr[centro] < dato) entonces <br>
 								&nbsp;&nbsp;		menor <- centro + 1 <br>
 								&nbsp;	SiNo <br>
 								&nbsp;&nbsp;		mayor <- centro - 1 <br>
+=======
+								&nbsp;	Si(arr[centro] &lt; dato) entonces <br>
+								&nbsp;&nbsp;		menor &larr; centro + 1 <br>
+								&nbsp;	SiNo <br>
+								&nbsp;&nbsp;		mayor &larr; centro - 1 <br>
+>>>>>>> ArianZambrano_branch
 								&nbsp;	FinSi <br>
 								FinSi<br>
 								Devolver -1<br>
@@ -107,10 +158,14 @@
 						<div class="buscar">
 							<label for="valor-buscar">Valor a Buscar: </label>
 							<input type="number" name="valor-buscar" class="num" id="valor-buscarB">
+<<<<<<< HEAD
 							<button class="go" onclick="var bS = binarySearch(list, data);
 														console.log('Indice: ' + bS);
 														if(bS==-1)
 															document.getElementById('error-2b').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+=======
+							<button class="go" onclick="exeBinaria(list);">Buscar</button>
+>>>>>>> ArianZambrano_branch
 						</div>
 						<div class="error" id="error-2b"></div>
 					</div>
@@ -118,6 +173,7 @@
 
 
 				  <!--Linear Search-->
+<<<<<<< HEAD
 				  <div id="menu1" class="container tab-pane fade"><br>
 					<div class="row">
 						<div class="col-12 col-md-8 animacion">
@@ -125,6 +181,20 @@
 						</div>
 						<div class="col-12 col-md-4">
 							<p class="Linear">
+=======
+				  <div id="menu1" class="tab-pane fade"><br>
+					<div class="row">
+						<div class="col-12 col-lg-8 animacion">
+							<div class="grafico">
+								<div id="contenidografico-l" class="row"></div>
+							</div>
+							<!-- <div class="resultados">
+								
+							</div> -->
+						</div>
+						<div class="col-12 col-md-4">
+							<p class="Linear pseudo">
+>>>>>>> ArianZambrano_branch
 								<b><u>Pseudocódigo</u></b> <br>
 								Funcion entero linearSearch(entero arr[],entero dato) <br>
 								<br>
@@ -134,6 +204,9 @@
 								i <- 0 <br>
 								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
 								&nbsp;	i <- i+1<br>
+								i &larr 0 <br>
+								Mientras (i &lt; tamaño(arr) y arr[i] &lt; dato)<br>
+								&nbsp;	i &larr; i+1<br>
 								FinMientras<br>
 								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
 								&nbsp;	Devolver -1<br>
@@ -145,20 +218,36 @@
 						<div class="buscar">
 							<label for="valor-buscar">Valor a Buscar: </label>
 							<input type="number" name="valor-buscar" class="num" id="valor-buscarL">
+<<<<<<< HEAD
 							<button class="go" onclick="var lS = linearSearch(list, data);
 														console.log('Indice: ' + lS);
 														if(lS==-1)
 															document.getElementById('error-2l').innerHTML = 'El elemento no se encuentra en el arreglo'">Buscar</button>
+=======
+							<button class="go" onclick="exeLinear(list);">Buscar</button>
+>>>>>>> ArianZambrano_branch
 						</div>
 						<div class="error" id="error-2l"></div>
 					</div>
 				  </div>
 
 				  <!--QuickSelect-->
+<<<<<<< HEAD
 				  <div id="menu2" class="container tab-pane fade"><br>
 					<div class="row">
 						<div class="col-12 col-md-7 animacion">
 
+=======
+				  <div id="menu2" class="tab-pane fade"><br>
+					<div class="row">
+						<div class="col-12 col-md-8 animacion">
+							<div class="grafico">
+								<div id="contenidografico-q" class="row"></div>
+							</div>
+							<!-- <div class="resultados">
+								
+							</div> -->
+>>>>>>> ArianZambrano_branch
 						</div>
 						<div class="col-12 col-md-5">
 							<p class="Quick">
@@ -205,6 +294,15 @@
 								FinFuncion <br>
 							</p>
 						</div>
+<<<<<<< HEAD
+=======
+						<div class="buscar">
+							<label for="valor-buscar">Posición a Buscar: </label>
+							<input type="number" name="valor-buscar" class="num" id="valor-buscarQ">
+							<button class="go" onclick="exeQuick(list);">Buscar</button>
+						</div>
+						<div class="error" id="error-2q"></div>
+>>>>>>> ArianZambrano_branch
 					</div>
 				  </div>
 					
@@ -242,4 +340,8 @@
 	</body>
 	<script defer type="text/javascript" src="searchAlgorithms.js"></script>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> ArianZambrano_branch
