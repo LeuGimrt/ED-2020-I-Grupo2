@@ -127,7 +127,7 @@ function quickSelect(list, left, right, data){
     else {
         (part < data) ? quickSelect(list, part+1, right, data):
         quickSelect(list, left, part-1, data);
-    }*/
+    }
     return 1;
 }
 //++++++++++++++++++++++++++++
@@ -248,14 +248,14 @@ function escribirLista(list, search){
     let content = "";
     for (let index = 0; index < list.length - 1; index++) {
         if(search == index)
-            content = content + "<div class=\"col-2 cuadro-encontrado\">" +  list[index] + "</div>";
+            content = content + "<div class=\"cuadro buscando\">" +  list[index] + "</div>";
         else
-        content = content + "<div class=\"col-2 cuadro\">" +  list[index] + "</div>";
+        content = content + "<div class=\"cuadro\">" +  list[index] + "</div>";
     }
     if(search == list.length-1)
-    content = content + "<div class=\"col-2 cuadro-encontrado\">" + list[list.length-1] + "</div>";
+    content = content + "<div class=\"cuadro buscando\">" + list[list.length-1] + "</div>";
     else
-    content = content + "<div class=\"col-2 cuadro\">" + list[list.length-1] + "</div>";
+    content = content + "<div class=\"cuadro\">" + list[list.length-1] + "</div>";
 
     document.getElementById("contenidografico-b").innerHTML = content;
     document.getElementById("contenidografico-l").innerHTML = content;

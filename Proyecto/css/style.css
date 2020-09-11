@@ -38,39 +38,52 @@ header h1 {
 }
 
 .animacion {
-    height: 700px;
-    background-color: #240c8b;
+    height: 550px;
+    background-color: #00a4b9;
+    background-image: url(../img/bg-dark.png);
     display: flex;
+    object-fit: cover;
 }
+
 .grafico {
     color: #fcfcf4;
     font-size: 2em;
     width: 100%;
     padding: 20px;
-    
 }
 
 .grafico .row {
     width: 100%;
     height: 100%;
     display: flex;
+    padding: 0;
     align-content: center;
+    overflow: auto;
 }
 
 .cuadro {
     text-align: center;
-    border: 2px solid #eee;
-    height: 10%;
-    margin: 15px 10px;
-    background-color: rgb(0, 143, 143);
+    padding: 10px 0;
+    border: 2px solid rgb(38, 0, 209);
+    height: 80px;
+    width: 80px;
+    margin: 25px 10px;
+    background-color: rgb(56, 0, 70);
+    border-radius: 20px;
 }
 
-.cuadro-encontrado{
-    text-align: center;
-    border: 2px solid #eee;
-    height: 10%;
-    margin: 15px 10px;
+.encontrado{
     background-color: rgb(7, 182, 30);
+    border: 2px solid rgb(0, 255, 76);
+}
+
+.buscando {
+    background-color: rgb(2, 91, 175);
+    border: 2px solid rgb(95, 146, 255);
+}
+
+.pseudo {
+    font-family: 'Roboto Mono', monospace;
 }
 
 .resultados {
