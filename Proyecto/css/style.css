@@ -13,12 +13,28 @@ body {
     justify-content: space-around;
 }
 
+<<<<<<< HEAD
+=======
+.contenedor {
+    width: 85%;
+    margin: 0 auto;
+}
+
+>>>>>>> ArianZambrano_branch
 header h1 {
     margin-left: 10%;
     color: rgb(166, 0, 12);
     flex: 1 1 auto;
 }
 
+<<<<<<< HEAD
+=======
+.contenedor {
+    width: 85%;
+    margin: 0 auto;
+}
+
+>>>>>>> ArianZambrano_branch
 .borde {
     width: 95%;
     min-width: 600px;   
@@ -28,8 +44,53 @@ header h1 {
 }
 
 .animacion {
+<<<<<<< HEAD
     height: 500px;
     background-color: #240c8b;
+=======
+    height: 700px;
+    background-color: #240c8b;
+    display: flex;
+}
+.grafico {
+    color: #fcfcf4;
+    font-size: 1.5em;
+    width: 100%;
+    padding: 20px;
+    
+}
+
+.grafico .row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+}
+
+.cuadro {
+    text-align: center;
+    border: 2px solid #eee;
+    height: 10%;
+    margin: 15px 10px;
+    background-color: rgb(0, 143, 143);
+}
+
+.cuadro-encontrado{
+    text-align: center;
+    border: 2px solid #eee;
+    height: 10%;
+    margin: 15px 10px;
+    background-color: rgb(7, 182, 30);
+}
+
+.resultados {
+    justify-self: center;
+    align-self: flex-end;
+    width: 70%;
+    margin:10px;
+    height: 10%;
+    background-color: gray;
+>>>>>>> ArianZambrano_branch
 }
 
 main {
