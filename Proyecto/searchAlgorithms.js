@@ -74,19 +74,43 @@ function setList(list){
 //++++++++++++++++++++++++++++
 //SOLO LÓGICA!!! de las búsquedas y devolverán la posición o valor (en caso de Quick) o -1 en caso no encontrar
 var cont;
-function binarySearch(list, data) {
-    let min = 0,
+async function binarySearch(list, data) {   //la funcion ahora es asyn y devuelve objetos de tipo Promise
+    let min = 0;
+    let temp;
+
     max = list.length - 1;
     while (min <= max){
         var center = Math.floor((min+max) / 2);
+        temp = "elB" + center
+
+        await sleep(1500);  // delay
 
         if (list[center] == data ){
-            return center;
-        } 
-        (list[center] < data) ? min = center + 1 : max = center - 1; 
+            console.log("encontrao loko")
+            document.getElementById(temp).classList.add("encontrado");
+            return;
+        } else {
+            document.getElementById(temp).classList.add("buscando");
+        }
+
+        if (list[center] < data) {
+            min = center + 1;
+            for(let i = center-1; i >= 0; i--) {
+                temp = "elB" + i;
+                document.getElementById(temp).classList.add("descartado");
+            }
+        } else {
+            max = center - 1;
+            for(let i = center+1; i < list.length; i++) {
+                temp = "elB" + i;
+                document.getElementById(temp).classList.add("descartado");
+            }
+        }
+
+        //(list[center] < data) ? min = center + 1 : max = center - 1; 
         console.log(list[center]);
     }
-    return -1;
+    return;
 }
 
 
@@ -97,22 +121,22 @@ async function linearSearch(list, data){
 
     while(i < list.length && list[i] != data){
 
-        temp = "el" + i;
+        temp = "elL" + i;
 
         document.getElementById(temp).classList.add("buscando");
         await sleep(500);
         i++;
     }
     
-    temp = "el" + (i);
+    temp = "elL" + (i);
 
     if(i >= list.length || list[i] != data){
-        return -1;
+        return;
     } else if (list[i] == data) {
         console.log("encontrao loko")
         document.getElementById(temp).classList.add("encontrado");
     }
-    return i;
+    return;
 }
 
 function quickSelect(list, left, right, data){
@@ -170,6 +194,7 @@ function exeBinaria(list){
         
         //ordenamiento previo
         list.sort(((a, b) => a - b));
+        escribirLista(list);
         
         //mostrar ordenamiento
         //let content = "";
@@ -180,14 +205,14 @@ function exeBinaria(list){
         document.getElementById("contenidografico-b").innerHTML = content;*/
         //fin de ordenamiento previo
 
-        let Bs = binarySearch(list, data);
-        escribirLista(list, Bs);
-        if(Bs == -1){
-            document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
-        }
-        else{
-            console.log("valor encontrado en: " + Bs);
-        }
+        binarySearch(list, data);
+        // //escribirLista(list, Bs);
+        // if(Bs == -1){
+        //     document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
+        // }
+        // else{
+        //     console.log("valor encontrado en: " + Bs);
+        // }
     }
 }
 
@@ -206,14 +231,15 @@ function exeLinear(list){
     else{
         document.getElementById('error-2l').innerHTML = "";
         console.log("Valor a buscar: " + data);
-        let Ls = linearSearch(list, data);
+        escribirLista(list);
+        linearSearch(list, data);
         //escribirLista(list, Ls);
-        if(Ls == -1){
-            document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
-        }
-        else{
-            console.log("valor encontrado en: " + Ls);
-        }
+        // if(Ls == -1){
+        //     document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
+        // }
+        // else{
+        //     console.log("valor encontrado en: " + Ls);
+        // }
     }
 }
 
@@ -237,7 +263,7 @@ function exeQuick(list){
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
             let Qs = quickSelect(list,0,list.length-1, data);
-            escribirLista(list, search);
+            escribirLista(list);
             console.log("valor de posición "+ data +" es: " + Qs);
         }
     }
@@ -247,22 +273,41 @@ function exeQuick(list){
 // B L O Q U E   4           +
 //++++++++++++++++++++++++++++
 //Funciones auxiliares o extra
-function escribirLista(list, search){
+function escribirLista(list){
     let content = "";
-    for (let index = 0; index < list.length - 1; index++) {
-        if(search == index)
-            content = content + "<div class=\"cuadro encontrado\" id=\"el" + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
-        else
-        content = content + "<div class=\"cuadro\" id=\"el" + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
-    }
-    if(search == list.length-1)
-    content = content + "<div class=\"cuadro encontrado\" id=\"el" + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
-    else
-    content = content + "<div class=\"cuadro\" id=\"el" + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
+    let temp;
 
-    document.getElementById("contenidografico-l").innerHTML = content;
+    if (document.getElementById("linear-tab").classList.contains('active')) {
+        temp = "elL"
+    } else if (document.getElementById("binary-tab").classList.contains('active')) {
+        temp = "elB"
+    } else {
+        temp = "elQ"
+    }
+
+    for (let index = 0; index < list.length - 1; index++) {
+        content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
+    }
+   
+    content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
+
+    // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
+    if (document.getElementById("linear-tab").classList.contains('active')) {
+
+        document.getElementById("contenidografico-l").innerHTML = content;
+
+    } else if (document.getElementById("binary-tab").classList.contains('active')) {
+
+        document.getElementById("contenidografico-b").innerHTML = content;
+
+    } else {
+
+        document.getElementById("contenidografico-q").innerHTML = content;
+
+    }
 }
 
+// funcion de delay a lo arduino
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
