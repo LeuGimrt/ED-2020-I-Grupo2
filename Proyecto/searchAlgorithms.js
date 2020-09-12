@@ -57,6 +57,8 @@ function setList(list){
         }
         else{
             document.getElementById('error-1').innerHTML = "";
+
+            // Guardando en list los valores random generados
             for(let index = 0; index < list.length; index++){
                 list[index] = Math.floor(Math.random()*(maxVal-minVal+1)+minVal);
             }
@@ -77,6 +79,7 @@ function binarySearch(list, data) {
     max = list.length - 1;
     while (min <= max){
         var center = Math.floor((min+max) / 2);
+
         if (list[center] == data ){
             return center;
         } 
@@ -86,14 +89,28 @@ function binarySearch(list, data) {
     return -1;
 }
 
-function linearSearch(list, data){
+
+
+async function linearSearch(list, data){
     let i = 0;
-    while(i < list.length && list[i] < data){
+    let temp;
+
+    while(i < list.length && list[i] != data){
+
+        temp = "el" + i;
+
+        document.getElementById(temp).classList.add("buscando");
+        await sleep(500);
         i++;
     }
+    
+    temp = "el" + (i);
 
     if(i >= list.length || list[i] != data){
         return -1;
+    } else if (list[i] == data) {
+        console.log("encontrao loko")
+        document.getElementById(temp).classList.add("encontrado");
     }
     return i;
 }
@@ -130,21 +147,7 @@ function quickSelect(list, left, right, data){
     }
     return 1;
 }
-//++++++++++++++++++++++++++++
-// B L O Q U E   3           +
-//++++++++++++++++++++++++++++
-//Control de las ejecuciones de cada una de las búsquedas y activación de los otros procesos
-function exeBinaria(list){
-    data = document.getElementById('valor-buscarB').value;
-    let dataVal = validar(data);
-    if(dataVal == -1){
-        document.getElementById('error-2b').innerHTML = "Error: Valor a buscar vacío";
-    }
-    else if(dataVal == -2){
-        document.getElementById('error-2b').innerHTML = "Error: Valor a buscar debe ser entero";
-    }
-    return 1;
-}
+
 //++++++++++++++++++++++++++++
 // B L O Q U E   3           +
 //++++++++++++++++++++++++++++
@@ -204,7 +207,7 @@ function exeLinear(list){
         document.getElementById('error-2l').innerHTML = "";
         console.log("Valor a buscar: " + data);
         let Ls = linearSearch(list, data);
-        escribirLista(list, Ls);
+        //escribirLista(list, Ls);
         if(Ls == -1){
             document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
         }
@@ -248,16 +251,18 @@ function escribirLista(list, search){
     let content = "";
     for (let index = 0; index < list.length - 1; index++) {
         if(search == index)
-            content = content + "<div class=\"cuadro buscando\">" +  list[index] + "</div>";
+            content = content + "<div class=\"cuadro encontrado\" id=\"el" + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
         else
-        content = content + "<div class=\"cuadro\">" +  list[index] + "</div>";
+        content = content + "<div class=\"cuadro\" id=\"el" + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
     }
     if(search == list.length-1)
-    content = content + "<div class=\"cuadro buscando\">" + list[list.length-1] + "</div>";
+    content = content + "<div class=\"cuadro encontrado\" id=\"el" + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
     else
-    content = content + "<div class=\"cuadro\">" + list[list.length-1] + "</div>";
+    content = content + "<div class=\"cuadro\" id=\"el" + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
 
-    document.getElementById("contenidografico-b").innerHTML = content;
     document.getElementById("contenidografico-l").innerHTML = content;
-    document.getElementById("contenidografico-q").innerHTML = content;
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

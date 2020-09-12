@@ -70,16 +70,24 @@ header h1 {
     margin: 25px 10px;
     background-color: rgb(56, 0, 70);
     border-radius: 20px;
+    /* transition: 500ms ease-in-out all; */
+}
+
+.cuadro small {
+    font-size: 0.6em;
+
 }
 
 .encontrado{
     background-color: rgb(7, 182, 30);
     border: 2px solid rgb(0, 255, 76);
+    /* transition: 500ms ease-in-out all; */
 }
 
 .buscando {
     background-color: rgb(2, 91, 175);
     border: 2px solid rgb(95, 146, 255);
+    /* transition: 0.5s ease-in-out all; */
 }
 
 .pseudo {
