@@ -73,12 +73,36 @@ header h1 {
     /* transition: 500ms ease-in-out all; */
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    padding: 5px 15px;
+    width: 80px;
+    border: 2px solid #8ad4ff;
+    border-radius: 20px;
+}
+
+input[type=number]:hover {
+    background-color: rgb(241, 246, 252);
+    transition: 200ms ease-in-out all;
+}
+
+input[type=number]:focus {
+    border-color: rgb(18, 156, 236);
+}
+
 .cuadro:hover {
     cursor: context-menu;
     opacity: 0.7;
     position: relative;
     top: 5px;
     transition: 200ms ease-in-out all;
+    animation: ;
 }
 
 .cuadro small {
