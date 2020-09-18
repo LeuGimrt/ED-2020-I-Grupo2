@@ -5,8 +5,11 @@
 var list = new Array();
 var data;
 var valoresPermisibles = false;
-var encontrado = false;
 var listCopia = new Array();
+var errorB = document.querySelector('#error-2b');
+var errorL = document.querySelector('#error-2l');
+var errorQ = document.querySelector('#error-2q');
+
 
 function validar(entrada){
     if(entrada == ""){
@@ -82,7 +85,6 @@ function setList(list){
         }
     }
 }
-
 //++++++++++++++++++++++++++++
 // B L O Q U E   2           +
 //++++++++++++++++++++++++++++
@@ -91,18 +93,19 @@ var cont;
 async function binarySearch(list, data) {   //la funcion ahora es async y devuelve objetos de tipo Promise
     let min = 0;
     let temp;
-    encontrado = true;
 
     max = list.length - 1;
     while (min <= max){
         var center = Math.floor((min+max) / 2);
         temp = "elB" + center
 
-        await sleep(1500);  // delay
+        await sleep(obtenerDelay());  // delay
 
         if (list[center] == data ){
             console.log("encontrado en: " + center);
             document.getElementById(temp).classList.add("encontrado");
+
+            msgEncontrado(true, 'b');
             return;
         } else {
             document.getElementById(temp).classList.add("buscando");
@@ -128,14 +131,16 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
 
     if(min > max){
         console.log("band");
-        encontrado = false;
     }
+
+    msgEncontrado(false, 'b');
 
     return;
 }
 
+
+
 async function linearSearch(list, data){
-    encontrado = false;
     let i = 0;
     let temp;
 
@@ -144,33 +149,30 @@ async function linearSearch(list, data){
         temp = "elL" + i;
 
         document.getElementById(temp).classList.add("buscando");
-        await sleep(500);
+        await sleep(obtenerDelay());
         i++;
     }
     
     temp = "elL" + (i);
 
     if(i >= list.length || list[i] != data){
+        msgEncontrado(false, 'l');
         return;
     } else if (list[i] == data) {
         console.log("encontrao loko")
         document.getElementById(temp).classList.add("encontrado");
-        encontrado = true;
+        msgEncontrado(true, 'l');
     }
     return;
 }
 
-async function quickSelect(list, left, right, data){
-    encontrado = false;
+function quickSelect(list, left, right, data){
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
         part = partition(list,left,right);
-
-        escribirLista(list);
-        await sleep(500);
+    
     if(part == data){
-        encontrado = true;
-        console.log(list[part]); 
+        return list[part]
     }
     else if(part < data){
         return quickSelect(list, part+1, right, data);
@@ -232,12 +234,9 @@ function exeBinaria(list){
         //fin de ordenamiento previo
 
         binarySearch(list, data);
-        if(encontrado){
-            document.getElementById('error-2b').innerHTML = "";
-        }else{
-            console.log("band2");
-            document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
-        }
+        
+
+
         // //escribirLista(list, Bs);
         // if(Bs == -1){
         //     document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -265,7 +264,7 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
-        if(encoNtrado){
+        if(encontrado){
             document.getElementById('error-2l').innerHTML = "";
         }else{
             document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -291,9 +290,8 @@ function exeQuick(list){
     }
     else if(list.length == 0){
         document.getElementById('error-2q').innerHTML = "Error: Lista Vacía";
-    } else if (data <= 0){
-        document.getElementById('error-2q').innerHTML = "Error: El i-ésimo elemento mas pequeño a buscar debe ser mayor a cero";
-    } else{
+    }
+    else{
         dataVal = dataVal - 0;//convertir a número
         if(dataVal < 0 || dataVal >= list.length){
             document.getElementById('error-2q').innerHTML = "Error: Valor fuera de rango del arreglo";
@@ -302,6 +300,13 @@ function exeQuick(list){
             console.log("Posicion a buscar: " + data);
 
             listCopia.length = list.length;
+
+            /////////ESTABLECER CUADRADOS NORMALES////////////
+            for (let index = 0; index < list.length; index++) {
+                document.getElementById("elQ" + index).classList.remove("encontrado");
+            }
+            ///////////////////////////////
+
             /////////COPIAR VALORES////////////
             for (let index = 0; index < listCopia.length; index++) {
                 listCopia[index] = list[index];
@@ -340,8 +345,7 @@ function escribirLista(list){
     if(valoresPermisibles){
         let content = "";
         let temp;
-
-        //dependiendo de la pestaña que esté activa, almacena un string en temp cuando se llame esta funcion
+    
         if (document.getElementById("linear-tab").classList.contains('active')) {
             temp = "elL"
         } else if (document.getElementById("binary-tab").classList.contains('active')) {
@@ -356,7 +360,7 @@ function escribirLista(list){
        
         content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
     
-        // Evalúa qué pestaña esta activa actualmente: linear, binaria o quick
+        // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
         if (document.getElementById("linear-tab").classList.contains('active')) {
     
             document.getElementById("contenidografico-l").innerHTML = content;
@@ -374,7 +378,22 @@ function escribirLista(list){
 
 }
 
+function obtenerDelay() {
+    delay = document.getElementById('delay').value;
+    console.log(delay);
+    return delay;
+}
 
+function msgEncontrado(encontrado, tipo) {
+    let msg = '';
+
+    msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
+
+    if (tipo == 'b')
+        errorB.innerHTML = msg;
+    else if (tipo == 'l')
+        errorL.innerHTML = msg;
+}
 
 // funcion de delay a lo arduino
 function sleep(ms) {

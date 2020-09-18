@@ -102,7 +102,6 @@ input[type=number]:focus {
     position: relative;
     top: 5px;
     transition: 200ms ease-in-out all;
-    animation: ;
 }
 
 .cuadro small {
