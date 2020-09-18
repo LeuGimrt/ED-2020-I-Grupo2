@@ -4,6 +4,8 @@
 //LLENADO DEL ARRAY
 var list = new Array();
 var data;
+var valoresPermisibles = false;
+var encontrado = false;
 
 function validar(entrada){
     if(entrada == ""){
@@ -11,6 +13,9 @@ function validar(entrada){
     }
     else if(entrada % 1 != 0){
         return -2;//-2 = valor no entero
+    }
+    else if(entrada<0){
+        return -3;
     }
     else{
         return entrada;
@@ -29,6 +34,7 @@ function getNumElementos(){
     }
     else if(tamañoVal<= 0){
         document.getElementById('error-1').innerHTML = "Error: Tamaño negativo o 0";
+        valoresPermisibles = false;
     }
     else{
         list.length = tamañoVal;
@@ -37,6 +43,9 @@ function getNumElementos(){
 }
 
 function setList(list){
+    
+    valoresPermisibles = false;
+
     let min = document.getElementById('min').value;
     let max = document.getElementById('max').value;
 
@@ -48,6 +57,8 @@ function setList(list){
     }
     else if(minVal == -2 || maxVal == -2){
         document.getElementById('error-1').innerHTML = "Error: Campos deben ser enteros";
+    }else if(list.length <= 0){
+        document.getElementById('error-1').innerHTML = "Error: Tamaño negativo o 0";
     }
     else{
         maxVal = maxVal - 0; //para convertir a tipo numerico
@@ -65,7 +76,8 @@ function setList(list){
             console.log("Elementos: (" + min + "," + max + ")");
             for(index = 0; index < list.length; index++){
                 console.log(list[index]);
-            } 
+            }
+            valoresPermisibles = true; 
         }
     }
 }
@@ -74,9 +86,10 @@ function setList(list){
 //++++++++++++++++++++++++++++
 //SOLO LÓGICA!!! de las búsquedas y devolverán la posición o valor (en caso de Quick) o -1 en caso no encontrar
 var cont;
-async function binarySearch(list, data) {   //la funcion ahora es asyn y devuelve objetos de tipo Promise
+async function binarySearch(list, data) {   //la funcion ahora es async y devuelve objetos de tipo Promise
     let min = 0;
     let temp;
+    encontrado = false;
 
     max = list.length - 1;
     while (min <= max){
@@ -88,6 +101,7 @@ async function binarySearch(list, data) {   //la funcion ahora es asyn y devuelv
         if (list[center] == data ){
             console.log("encontrao loko")
             document.getElementById(temp).classList.add("encontrado");
+            encontrado = true;
             return;
         } else {
             document.getElementById(temp).classList.add("buscando");
@@ -116,6 +130,7 @@ async function binarySearch(list, data) {   //la funcion ahora es asyn y devuelv
 
 
 async function linearSearch(list, data){
+    encontrado = false;
     let i = 0;
     let temp;
 
@@ -135,41 +150,27 @@ async function linearSearch(list, data){
     } else if (list[i] == data) {
         console.log("encontrao loko")
         document.getElementById(temp).classList.add("encontrado");
+        encontrado = true;
     }
     return;
 }
 
 function quickSelect(list, left, right, data){
+    encontrado = false;
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
+        part = partition(list,left,right);
     
-    part= (list, left, right) => {
-        let i;
-        let pivot = list[right];
-        let pivotLoc = left;
-        let aux;
-        let aux2;
-        for(i=left; i<=right; i++){
-            if(list[i] <= pivot){
-                aux = list[i];
-                list[i] = list[pivotLoc];
-                list[pivotLoc] = aux;
-                pivotLoc++;
-            }
-        }
-        aux2 = list[right];
-        list[right] = list[pivotLoc];
-        list[pivotLoc] = aux2;
-        return pivotLoc;
-    }
     if(part == data){
+        encontrado = true;
         return list[part]
     }
-    else {
-        (part < data) ? quickSelect(list, part+1, right, data):
-        quickSelect(list, left, part-1, data);
+    else if(part < data){
+        return quickSelect(list, part+1, right, data);
     }
-    return 1;
+    else {
+        return quickSelect(list, left, part-1, data);
+    }
 }
 
 //++++++++++++++++++++++++++++
@@ -206,6 +207,11 @@ function exeBinaria(list){
         //fin de ordenamiento previo
 
         binarySearch(list, data);
+        if(encontrado){
+            document.getElementById('error-2b').innerHTML = "";
+        }else{
+            document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
+        }
         // //escribirLista(list, Bs);
         // if(Bs == -1){
         //     document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -233,6 +239,11 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
+        if(encotrado){
+            document.getElementById('error-2l').innerHTML = "";
+        }else{
+            document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
+        }
         //escribirLista(list, Ls);
         // if(Ls == -1){
         //     document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -263,8 +274,13 @@ function exeQuick(list){
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
             let Qs = quickSelect(list,0,list.length-1, data);
-            escribirLista(list);
+            //escribirLista(list,data);
             console.log("valor de posición "+ data +" es: " + Qs);
+            if(encontrado){
+                document.getElementById('error-2l').innerHTML = "";
+            }else{
+                document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
+            }
         }
     }
 }
@@ -274,37 +290,58 @@ function exeQuick(list){
 //++++++++++++++++++++++++++++
 //Funciones auxiliares o extra
 function escribirLista(list){
-    let content = "";
-    let temp;
-
-    if (document.getElementById("linear-tab").classList.contains('active')) {
-        temp = "elL"
-    } else if (document.getElementById("binary-tab").classList.contains('active')) {
-        temp = "elB"
-    } else {
-        temp = "elQ"
+    if(valoresPermisibles){
+        let content = "";
+        let temp;
+    
+        if (document.getElementById("linear-tab").classList.contains('active')) {
+            temp = "elL"
+        } else if (document.getElementById("binary-tab").classList.contains('active')) {
+            temp = "elB"
+        } else {
+            temp = "elQ"
+        }
+    
+        for (let index = 0; index < list.length - 1; index++) {
+            content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
+        }
+       
+        content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
+    
+        // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
+        if (document.getElementById("linear-tab").classList.contains('active')) {
+    
+            document.getElementById("contenidografico-l").innerHTML = content;
+    
+        } else if (document.getElementById("binary-tab").classList.contains('active')) {
+    
+            document.getElementById("contenidografico-b").innerHTML = content;
+    
+        } else {
+    
+            document.getElementById("contenidografico-q").innerHTML = content;
+    
+        }
     }
 
-    for (let index = 0; index < list.length - 1; index++) {
-        content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
+}
+
+//Función partición para el quick
+function partition(list, left, right){
+    let pivot = list[right];
+    let pivotLoc = left;
+    for(let i = left; i<= right; i++){
+        if(list[i] < pivot){
+            let temp = list[i];
+            list[i] = list[pivotLoc];
+            list[pivotLoc] = temp;
+            pivotLoc++;
+        }
     }
-   
-    content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
-
-    // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
-    if (document.getElementById("linear-tab").classList.contains('active')) {
-
-        document.getElementById("contenidografico-l").innerHTML = content;
-
-    } else if (document.getElementById("binary-tab").classList.contains('active')) {
-
-        document.getElementById("contenidografico-b").innerHTML = content;
-
-    } else {
-
-        document.getElementById("contenidografico-q").innerHTML = content;
-
-    }
+    let aux = list[right];
+    list[right] = list[pivotLoc];
+    list[pivotLoc] = aux;
+    return pivotLoc;
 }
 
 // funcion de delay a lo arduino

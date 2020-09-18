@@ -190,4 +190,8 @@ main {
     .titulo{
         flex-flow: row wrap;
     }
+
+    .pseudo{
+        margin-top: 10px;
+    }
 }
