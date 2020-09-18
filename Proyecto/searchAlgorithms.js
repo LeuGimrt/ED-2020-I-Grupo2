@@ -268,11 +268,7 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
-        if(encontrado){
-            document.getElementById('error-2l').innerHTML = "";
-        }else{
-            document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
-        }
+        
         //escribirLista(list, Ls);
         // if(Ls == -1){
         //     document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
