@@ -76,6 +76,8 @@ header h1 {
 .cuadro:hover {
     cursor: context-menu;
     opacity: 0.7;
+    position: relative;
+    top: 5px;
     transition: 200ms ease-in-out all;
 }
 
@@ -93,7 +95,10 @@ header h1 {
 .buscando {
     background-color: rgb(2, 91, 175);
     border: 2px solid rgb(95, 146, 255);
-    /* transition: 0.5s ease-in-out all; */
+    position: relative;
+    bottom: 5px;
+    transition: 0.5s ease-in-out all;
+    
 }
 
 .descartado {

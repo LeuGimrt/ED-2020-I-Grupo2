@@ -81,6 +81,7 @@ function setList(list){
         }
     }
 }
+
 //++++++++++++++++++++++++++++
 // B L O Q U E   2           +
 //++++++++++++++++++++++++++++
@@ -127,8 +128,6 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
     return;
 }
 
-
-
 async function linearSearch(list, data){
     encontrado = false;
     let i = 0;
@@ -155,15 +154,17 @@ async function linearSearch(list, data){
     return;
 }
 
-function quickSelect(list, left, right, data){
+async function quickSelect(list, left, right, data){
     encontrado = false;
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
         part = partition(list,left,right);
-    
+
+        escribirLista(list);
+        await sleep(500);
     if(part == data){
         encontrado = true;
-        return list[part]
+        console.log(list[part]); 
     }
     else if(part < data){
         return quickSelect(list, part+1, right, data);
@@ -171,6 +172,24 @@ function quickSelect(list, left, right, data){
     else {
         return quickSelect(list, left, part-1, data);
     }
+}
+
+//Función partición para el quick
+function partition(list, left, right){
+    let pivot = list[right];
+    let pivotLoc = left;
+    for(let i = left; i<= right; i++){
+        if(list[i] < pivot){
+            let temp = list[i];
+            list[i] = list[pivotLoc];
+            list[pivotLoc] = temp;
+            pivotLoc++;
+        }
+    }
+    let aux = list[right];
+    list[right] = list[pivotLoc];
+    list[pivotLoc] = aux;
+    return pivotLoc;
 }
 
 //++++++++++++++++++++++++++++
@@ -239,7 +258,7 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
-        if(encotrado){
+        if(encontrado){
             document.getElementById('error-2l').innerHTML = "";
         }else{
             document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -265,15 +284,16 @@ function exeQuick(list){
     }
     else if(list.length == 0){
         document.getElementById('error-2q').innerHTML = "Error: Lista Vacía";
-    }
-    else{
+    } else if (data <= 0){
+        document.getElementById('error-2q').innerHTML = "Error: El i-ésimo elemento mas pequeño a buscar debe ser mayor a cero";
+    } else{
         dataVal = dataVal - 0;//convertir a número
         if(dataVal < 0 || dataVal >= list.length){
             document.getElementById('error-2q').innerHTML = "Error: Valor fuera de rango del arreglo";
         }else{
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
-            let Qs = quickSelect(list,0,list.length-1, data);
+            let Qs = quickSelect(list,0,list.length-1, data-1);
             //escribirLista(list,data);
             console.log("valor de posición "+ data +" es: " + Qs);
             if(encontrado){
@@ -293,7 +313,8 @@ function escribirLista(list){
     if(valoresPermisibles){
         let content = "";
         let temp;
-    
+
+        //dependiendo de la pestaña que esté activa, almacena un string en temp cuando se llame esta funcion
         if (document.getElementById("linear-tab").classList.contains('active')) {
             temp = "elL"
         } else if (document.getElementById("binary-tab").classList.contains('active')) {
@@ -308,7 +329,7 @@ function escribirLista(list){
        
         content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
     
-        // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
+        // Evalúa qué pestaña esta activa actualmente: linear, binaria o quick
         if (document.getElementById("linear-tab").classList.contains('active')) {
     
             document.getElementById("contenidografico-l").innerHTML = content;
@@ -326,23 +347,7 @@ function escribirLista(list){
 
 }
 
-//Función partición para el quick
-function partition(list, left, right){
-    let pivot = list[right];
-    let pivotLoc = left;
-    for(let i = left; i<= right; i++){
-        if(list[i] < pivot){
-            let temp = list[i];
-            list[i] = list[pivotLoc];
-            list[pivotLoc] = temp;
-            pivotLoc++;
-        }
-    }
-    let aux = list[right];
-    list[right] = list[pivotLoc];
-    list[pivotLoc] = aux;
-    return pivotLoc;
-}
+
 
 // funcion de delay a lo arduino
 function sleep(ms) {
