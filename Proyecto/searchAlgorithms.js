@@ -10,6 +10,8 @@ var errorB = document.querySelector('#error-2b');
 var errorL = document.querySelector('#error-2l');
 var errorQ = document.querySelector('#error-2q');
 
+var posiQuick = false;
+
 
 function validar(entrada){
     if(entrada == ""){
@@ -172,7 +174,9 @@ function quickSelect(list, left, right, data){
         part = partition(list,left,right);
     
     if(part == data){
+        posiQuick = true;
         return list[part]
+        
     }
     else if(part < data){
         return quickSelect(list, part+1, right, data);
@@ -316,8 +320,8 @@ function exeQuick(list){
             let Qs = quickSelect(list,0,list.length-1, data);
 
             console.log("valor de posición "+ data +" es: " + Qs);
-            if(encontrado){
-                document.getElementById('error-2l').innerHTML = "";
+            if(posiQuick){
+                document.getElementById('error-2q').innerHTML = "";
                 //////////////////////////////////
                 let indice = 0;
                 while(listCopia[indice] != Qs){
@@ -331,7 +335,7 @@ function exeQuick(list){
                 }
 
             }else{
-                document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
+                document.getElementById('error-2q').innerHTML = "El elemento no se encuentra en el arreglo";
             }
         }
     }
