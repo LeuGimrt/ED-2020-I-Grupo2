@@ -6,6 +6,7 @@ var list = new Array();
 var data;
 var valoresPermisibles = false;
 var encontrado = false;
+var listCopia = new Array();
 
 function validar(entrada){
     if(entrada == ""){
@@ -89,7 +90,7 @@ var cont;
 async function binarySearch(list, data) {   //la funcion ahora es async y devuelve objetos de tipo Promise
     let min = 0;
     let temp;
-    encontrado = false;
+    encontrado = true;
 
     max = list.length - 1;
     while (min <= max){
@@ -99,9 +100,8 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
         await sleep(1500);  // delay
 
         if (list[center] == data ){
-            console.log("encontrao loko")
+            console.log("encontrado en: " + center);
             document.getElementById(temp).classList.add("encontrado");
-            encontrado = true;
             return;
         } else {
             document.getElementById(temp).classList.add("buscando");
@@ -124,6 +124,12 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
         //(list[center] < data) ? min = center + 1 : max = center - 1; 
         console.log(list[center]);
     }
+
+    if(min > max){
+        console.log("band");
+        encontrado = false;
+    }
+
     return;
 }
 
@@ -210,6 +216,7 @@ function exeBinaria(list){
         if(encontrado){
             document.getElementById('error-2b').innerHTML = "";
         }else{
+            console.log("band2");
             document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
         }
         // //escribirLista(list, Bs);
@@ -239,7 +246,7 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
-        if(encotrado){
+        if(encoNtrado){
             document.getElementById('error-2l').innerHTML = "";
         }else{
             document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
@@ -273,11 +280,31 @@ function exeQuick(list){
         }else{
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
+
+            listCopia.length = list.length;
+            /////////COPIAR VALORES////////////
+            for (let index = 0; index < listCopia.length; index++) {
+                listCopia[index] = list[index];
+            }
+            ///////////////////////////////
+            
             let Qs = quickSelect(list,0,list.length-1, data);
-            //escribirLista(list,data);
+
             console.log("valor de posición "+ data +" es: " + Qs);
             if(encontrado){
                 document.getElementById('error-2l').innerHTML = "";
+                //////////////////////////////////
+                let indice = 0;
+                while(listCopia[indice] != Qs){
+                    indice++;
+                }
+                document.getElementById("elQ" + indice).classList.add("encontrado");
+                ///////////REESTABLECER VALORES DE LA LISTA////////
+
+                for (let index = 0; index < listCopia.length; index++) {
+                    list[index] = listCopia[index];
+                }
+
             }else{
                 document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
             }
