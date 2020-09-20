@@ -39,7 +39,7 @@ header h1 {
 
 .animacion {
     height: 550px;
-    background-color: #00a4b9;
+    background-color: #000000;
     background-image: url(../img/bg-dark.png);
     display: flex;
     object-fit: cover;
@@ -47,7 +47,7 @@ header h1 {
 
 .grafico {
     color: #fcfcf4;
-    font-size: 2em;
+    font-size: 40px;
     width: 100%;
     padding: 20px;
 }
@@ -66,7 +66,7 @@ header h1 {
     text-align: center;
     border: 2px solid rgb(38, 0, 209);
     height: 80px;
-    width: 80px;
+    width: 2em;
     padding: 10px 20px;
     margin: 20px 15px;
     background-color: rgb(56, 0, 70);
@@ -107,7 +107,6 @@ input[type=number]:focus {
 
 .cuadro small {
     font-size: 0.6em;
-
 }
 
 .encontrado{
@@ -135,13 +134,27 @@ input[type=number]:focus {
     font-family: 'Roboto Mono', monospace;
 }
 
-.resultados {
-    justify-self: center;
-    align-self: flex-end;
-    width: 70%;
-    margin:10px;
-    height: 10%;
-    background-color: gray;
+.zoom{
+    margin-left: 10%;
+    width: max-content;
+    color: #000000;
+    font-size: 1.5em;
+}
+
+.zoom-in:hover{
+    color: #007bff;
+}
+
+.zoom-out:hover{
+    color: #007bff;
+}
+
+.zoom-blocked{
+    color: darkgrey;
+}
+
+.zoom-blocked:hover{
+    color: darkgrey;
 }
 
 main {

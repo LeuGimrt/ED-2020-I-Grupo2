@@ -1,5 +1,5 @@
 //++++++++++++++++++++++++++++
-// B L O Q U E   1           +
+// VARIABLES    GLOBALES     +
 //++++++++++++++++++++++++++++
 //LLENADO DEL ARRAY
 var list = new Array();
@@ -11,84 +11,11 @@ var errorL = document.querySelector('#error-2l');
 var errorQ = document.querySelector('#error-2q');
 
 var posiQuick = false;
+var zoom = 80;
+var zoomTxt = 40;
 
-
-function validar(entrada){
-    if(entrada == ""){
-        return -1;//-1 = vacío
-    }
-    else if(entrada % 1 != 0){
-        return -2;//-2 = valor no entero
-    }
-    else if(entrada<0){
-        return -3;
-    }
-    else{
-        return entrada;
-    }
-}
-
-function getNumElementos(){
-    let tamaño = document.getElementById('numElementos').value;
-    let tamañoVal = validar(tamaño);
-    tamañoVal = tamañoVal - 0; // conversion a numero
-    if(tamañoVal == -1){
-        document.getElementById('error-1').innerHTML = "Error: Campo de tamaño vacío";
-    }
-    else if(tamañoVal == -2){
-        document.getElementById('error-1').innerHTML = "Error: Tamaño no entero";
-    }
-    else if(tamañoVal<= 0){
-        document.getElementById('error-1').innerHTML = "Error: Tamaño negativo o 0";
-        valoresPermisibles = false;
-    }
-    else{
-        list.length = tamañoVal;
-        console.log("Tamaño del arreglo: " + list.length);
-    }
-}
-
-function setList(list){
-    
-    valoresPermisibles = false;
-
-    let min = document.getElementById('min').value;
-    let max = document.getElementById('max').value;
-
-    let minVal = validar(min);
-    let maxVal = validar(max);
-
-    if(minVal == -1 || maxVal == -1){
-        document.getElementById('error-1').innerHTML = "Error: Campos incompletos";
-    }
-    else if(minVal == -2 || maxVal == -2){
-        document.getElementById('error-1').innerHTML = "Error: Campos deben ser enteros";
-    }else if(list.length <= 0){
-        document.getElementById('error-1').innerHTML = "Error: Tamaño negativo o 0";
-    }
-    else{
-        maxVal = maxVal - 0; //para convertir a tipo numerico
-        minVal = minVal - 0 ;
-        if(maxVal <= minVal){
-            document.getElementById('error-1').innerHTML = "Error: Mínimo no puede ser mayor ni igual que máximo";
-        }
-        else{
-            document.getElementById('error-1').innerHTML = "";
-
-            // Guardando en list los valores random generados
-            for(let index = 0; index < list.length; index++){
-                list[index] = Math.floor(Math.random()*(maxVal-minVal+1)+minVal);
-            }
-            console.log("Elementos: (" + min + "," + max + ")");
-            for(index = 0; index < list.length; index++){
-                console.log(list[index]);
-            }
-            valoresPermisibles = true; 
-        }
-    }
-}
 //++++++++++++++++++++++++++++
-// B L O Q U E   2           +
+//      B L O Q U E   2      +
 //++++++++++++++++++++++++++++
 //SOLO LÓGICA!!! de las búsquedas y devolverán la posición o valor (en caso de Quick) o -1 en caso no encontrar
 var cont;
@@ -127,20 +54,12 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
             }
         }
 
-        //(list[center] < data) ? min = center + 1 : max = center - 1; 
-        console.log(list[center]);
     }
 
-    if(min > max){
-        console.log("band");
-    }
 
     msgEncontrado(false, 'b');
-
     return;
 }
-
-
 
 async function linearSearch(list, data){
     let i = 0;
@@ -161,7 +80,6 @@ async function linearSearch(list, data){
         msgEncontrado(false, 'l');
         return;
     } else if (list[i] == data) {
-        console.log("encontrao loko")
         document.getElementById(temp).classList.add("encontrado");
         msgEncontrado(true, 'l');
     }
@@ -205,10 +123,11 @@ function partition(list, left, right){
 }
 
 //++++++++++++++++++++++++++++
-// B L O Q U E   3           +
+//     B L O Q U E   3       +
 //++++++++++++++++++++++++++++
 //Control de las ejecuciones de cada una de las búsquedas y activación de los otros procesos
 function exeBinaria(list){
+    
     data = document.getElementById('valor-buscarB').value;
     let dataVal = validar(data);
     if(dataVal == -1){
@@ -223,31 +142,11 @@ function exeBinaria(list){
     else{
         document.getElementById('error-2b').innerHTML = "";
         console.log("Valor a buscar: " + data);
-        
         //ordenamiento previo
         list.sort(((a, b) => a - b));
         escribirLista(list);
-        
-        //mostrar ordenamiento
-        //let content = "";
-        /*for (let index = 0; index < list.length - 1; index++) {
-            content = content + list[index] + " -> ";
-        }
-        content = content  + list[list.length-1];
-        document.getElementById("contenidografico-b").innerHTML = content;*/
-        //fin de ordenamiento previo
 
         binarySearch(list, data);
-        
-
-
-        // //escribirLista(list, Bs);
-        // if(Bs == -1){
-        //     document.getElementById('error-2b').innerHTML = "El elemento no se encuentra en el arreglo";
-        // }
-        // else{
-        //     console.log("valor encontrado en: " + Bs);
-        // }
     }
 }
 
@@ -268,14 +167,6 @@ function exeLinear(list){
         console.log("Valor a buscar: " + data);
         escribirLista(list);
         linearSearch(list, data);
-        
-        //escribirLista(list, Ls);
-        // if(Ls == -1){
-        //     document.getElementById('error-2l').innerHTML = "El elemento no se encuentra en el arreglo";
-        // }
-        // else{
-        //     console.log("valor encontrado en: " + Ls);
-        // }
     }
 }
 
@@ -335,67 +226,4 @@ function exeQuick(list){
             }
         }
     }
-}
-
-//++++++++++++++++++++++++++++
-// B L O Q U E   4           +
-//++++++++++++++++++++++++++++
-//Funciones auxiliares o extra
-function escribirLista(list){
-    if(valoresPermisibles){
-        let content = "";
-        let temp;
-    
-        if (document.getElementById("linear-tab").classList.contains('active')) {
-            temp = "elL"
-        } else if (document.getElementById("binary-tab").classList.contains('active')) {
-            temp = "elB"
-        } else {
-            temp = "elQ"
-        }
-    
-        for (let index = 0; index < list.length - 1; index++) {
-            content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
-        }
-       
-        content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
-    
-        // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
-        if (document.getElementById("linear-tab").classList.contains('active')) {
-    
-            document.getElementById("contenidografico-l").innerHTML = content;
-    
-        } else if (document.getElementById("binary-tab").classList.contains('active')) {
-    
-            document.getElementById("contenidografico-b").innerHTML = content;
-    
-        } else {
-    
-            document.getElementById("contenidografico-q").innerHTML = content;
-    
-        }
-    }
-
-}
-
-function obtenerDelay() {
-    delay = document.getElementById('delay').value;
-    console.log(delay);
-    return delay;
-}
-
-function msgEncontrado(encontrado, tipo) {
-    let msg = '';
-
-    msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
-
-    if (tipo == 'b')
-        errorB.innerHTML = msg;
-    else if (tipo == 'l')
-        errorL.innerHTML = msg;
-}
-
-// funcion de delay a lo arduino
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
