@@ -118,7 +118,7 @@ function escribirLista(list){
 function zoomIn(){
     if(zoom < 100){
         zoom = zoom + 10;
-        zoomTxt = zoomTxt + 10;
+        zoomTxt = zoomTxt + 4.4;
        console.log("zoom: " + zoom); 
     }
     evaluarZoom();
@@ -127,7 +127,7 @@ function zoomIn(){
 function zoomOut(){
     if(zoom > 60){
         zoom = zoom - 10;
-        zoomTxt = zoomTxt - 10;
+        zoomTxt = zoomTxt - 4.4;
         console.log("zoom: " + zoom);
     }
     evaluarZoom();
@@ -151,6 +151,8 @@ function evaluarZoom(){
         cuadros[index].style.width = zoom + "px";
         cuadros[index].style.height = zoom + "px";
         cuadros[index].style.fontSize = zoomTxt + "px";
+        cuadros[index].style.margin = zoom/4 + "px";
+        cuadros[index].style.padding = zoom/8 + "px";
     }
 }
 //++++++++++++++++++++++++++++

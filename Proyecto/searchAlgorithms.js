@@ -12,7 +12,7 @@ var errorQ = document.querySelector('#error-2q');
 
 var posiQuick = false;
 var zoom = 80;
-var zoomTxt = 40;
+var zoomTxt = 35;
 
 //++++++++++++++++++++++++++++
 //      B L O Q U E   2      +
