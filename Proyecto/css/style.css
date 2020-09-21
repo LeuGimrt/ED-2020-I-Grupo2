@@ -140,6 +140,7 @@ input[type=number]:hover {
 
 input[type=number]:focus {
     border-color: rgb(18, 156, 236);
+    outline: none;
 }
 
 .cuadro:hover {
