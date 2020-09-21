@@ -1,5 +1,37 @@
+
+
 body {
-    background-color: #fcfcf4;
+    margin: 0;
+    padding: 0;
+    background-color:#161616;
+    color: #f4f4f4;
+}
+
+#override .btn {
+    border-radius: 1px;
+    border: 1px solid transparent;
+    padding: 8px 20px;
+}
+
+#override .btn-primary {
+    background-color: #0f62fe;
+}
+
+#override .btn-primary:hover {
+    background-color: #0353e9;
+}
+
+#override .row {
+    margin: 0;
+    padding: 0;
+}
+
+#override a{
+    color: #f4f4f4;
+}
+
+#override .nav-link.active  {
+    color: #000;
 }
 
 .titulo {
@@ -20,8 +52,10 @@ body {
 
 header h1 {
     margin-left: 10%;
-    color: rgb(166, 0, 12);
+    color: rgb(211, 243, 253);
     flex: 1 1 auto;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 500;
 }
 
 .contenedor {
@@ -38,7 +72,7 @@ header h1 {
 }
 
 .animacion {
-    height: 550px;
+    height: 60vh;
     background-color: #000000;
     background-image: url(../img/bg-dark.png);
     display: flex;
@@ -47,7 +81,6 @@ header h1 {
 
 .grafico {
     color: #fcfcf4;
-
     width: 100%;
     padding: 20px;
 }
@@ -64,20 +97,20 @@ header h1 {
 
 .cuadro {
     text-align: center;
-    border: 2px solid rgb(38, 0, 209);
+    border-bottom: 1px solid rgb(71, 32, 245);
     height: 80px;
     width: 80px;
     font-size: 35px;
     padding: 10px;
     margin: 20px;
-    background-color: rgb(56, 0, 70);
-    border-radius: 20px;
+    background-color: rgb(39, 0, 110);
+    border-radius: 5px;
     /* transition: 500ms ease-in-out all; */
 }
 
 .cuadro small {
-    font-size: 20px;
-    color: rgb(142, 194, 255);
+    font-size: 17px;
+    color: rgb(180, 221, 255);
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -88,14 +121,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
-    padding: 5px 15px;
+    padding: 5px 10px;
     width: 80px;
-    border: 2px solid #8ad4ff;
-    border-radius: 20px;
+    border: none;
+    border-radius: 1px;
+    border-bottom: 2px solid #5a6872;
+    color: #f4f4f4;
+}
+
+input {
+    background-color: #303030;
 }
 
 input[type=number]:hover {
-    background-color: rgb(241, 246, 252);
+    background-color: #242424;
     transition: 200ms ease-in-out all;
 }
 
@@ -105,9 +144,9 @@ input[type=number]:focus {
 
 .cuadro:hover {
     cursor: context-menu;
-    opacity: 0.7;
+    opacity: 0.8;
     position: relative;
-    top: 5px;
+    top: 3px;
     transition: 200ms ease-in-out all;
 }
 
@@ -133,13 +172,21 @@ input[type=number]:focus {
 }
 
 .pseudo {
+    margin-top: 20px;
     font-family: 'Roboto Mono', monospace;
+    background-color: #0e0e0e;
+    font-size: 1em;
+    padding: 15px 25px;
+    border: 3px solid #000;
+    border-radius: 10px;
 }
 
 .zoom{
-    margin-left: 10%;
+    position: absolute;
+    top: 5px;
+    right: 40px;
     width: max-content;
-    color: #000000;
+    color: #fff;
     font-size: 1.5em;
 }
 
@@ -187,27 +234,6 @@ main {
     color: red;
 }
 
-.Binary{
-    padding: 10px;
-    margin: auto;
-    border: solid;
-    border-radius: 20px;
-}
-
-.Linear{
-    padding: 10px;
-    margin: auto;
-    border: solid;
-    border-radius: 20px;
-}
-
-.Quick{
-    padding: 10px;
-    margin: auto;
-    border: solid;
-    border-radius: 20px;
-}
-
 .buscar{
     display: inline;
 }
@@ -228,6 +254,18 @@ main {
     text-align-last: center;
     flex: 4 1 auto;
     margin-bottom: 1em;
+}
+
+.velocidad {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.velocidad span {
+    position: absolute;
+    bottom: -20px;
+    left: 60px;
 }
 
 @media all and (max-width: 900px){
