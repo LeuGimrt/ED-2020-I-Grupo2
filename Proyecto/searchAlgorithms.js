@@ -87,10 +87,39 @@ async function linearSearch(list, data){
     return;
 }
 
-function quickSelect(list, left, right, data){
+async function quickSelect(list, left, right, data){
     if(data==null)
         data = prompt("Ingrese el valor a buscar: ");
-        part = partition(list,left,right);
+
+        let pivot = list[right];
+        let temp = "elQ" + right;
+
+        document.getElementById(temp).classList.add("pivote");
+
+        let pivotLoc = left;
+        for(let i = left; i<= right; i++){
+            await sleep(obtenerDelay());
+            if(list[i] < pivot){
+                
+                let temp = list[i];
+                list[i] = list[pivotLoc];
+                list[pivotLoc] = temp;
+
+                animarCambio (i, pivotLoc);
+
+                pivotLoc++;
+            }
+        }
+        document.getElementById(temp).classList.remove("pivote");
+        let aux = list[right];
+        list[right] = list[pivotLoc];
+        list[pivotLoc] = aux;
+
+        let part = pivotLoc;
+
+        //escribirLista(list);
+
+        
     
     if(part == data){
         posiQuick = true;
@@ -114,6 +143,9 @@ function partition(list, left, right){
             let temp = list[i];
             list[i] = list[pivotLoc];
             list[pivotLoc] = temp;
+
+            animarCambio (i, pivotLoc);
+
             pivotLoc++;
         }
     }
@@ -191,40 +223,41 @@ function exeQuick(list){
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
 
-            listCopia.length = list.length;
+            //listCopia.length = list.length;
 
-            /////////ESTABLECER CUADRADOS NORMALES////////////
-            for (let index = 0; index < list.length; index++) {
-                document.getElementById("elQ" + index).classList.remove("encontrado");
-            }
-            ///////////////////////////////
+            // /////////ESTABLECER CUADRADOS NORMALES////////////
+            // for (let index = 0; index < list.length; index++) {
+            //     document.getElementById("elQ" + index).classList.remove("encontrado");
+            // }
+            // ///////////////////////////////
 
-            /////////COPIAR VALORES////////////
-            for (let index = 0; index < listCopia.length; index++) {
-                listCopia[index] = list[index];
-            }
-            ///////////////////////////////
+            // /////////COPIAR VALORES////////////
+            // for (let index = 0; index < listCopia.length; index++) {
+            //     listCopia[index] = list[index];
+            // }
+            // ///////////////////////////////
+            quickSelect(list,0,list.length-1, data);
             
-            let Qs = quickSelect(list,0,list.length-1, data);
+            //let Qs = quickSelect(list,0,list.length-1, data);
 
-            console.log("valor de posición "+ data +" es: " + Qs);
-            if(posiQuick){
-                document.getElementById('error-2q').innerHTML = "";
-                //////////////////////////////////
-                let indice = 0;
-                while(listCopia[indice] != Qs){
-                    indice++;
-                }
-                document.getElementById("elQ" + indice).classList.add("encontrado");
-                ///////////REESTABLECER VALORES DE LA LISTA////////
+            // console.log("valor de posición "+ data +" es: " + Qs);
+            // if(posiQuick){
+            //     document.getElementById('error-2q').innerHTML = "";
+            //     //////////////////////////////////
+            //     let indice = 0;
+            //     while(listCopia[indice] != Qs){
+            //         indice++;
+            //     }
+            //     document.getElementById("elQ" + indice).classList.add("encontrado");
+            //     ///////////REESTABLECER VALORES DE LA LISTA////////
 
-                for (let index = 0; index < listCopia.length; index++) {
-                    list[index] = listCopia[index];
-                }
+            //     for (let index = 0; index < listCopia.length; index++) {
+            //         list[index] = listCopia[index];
+            //     }
 
-            }else{
-                document.getElementById('error-2q').innerHTML = "El elemento no se encuentra en el arreglo";
-            }
+            // }else{
+            //     document.getElementById('error-2q').innerHTML = "El elemento no se encuentra en el arreglo";
+            // }
         }
     }
 }

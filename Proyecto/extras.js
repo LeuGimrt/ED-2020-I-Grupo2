@@ -196,14 +196,54 @@ function animar(temp, estado) {
             rotateY: 360,
             duration: 2000
         });
-    } else {
+    } else if (estado == "descartado") {
         anime({
             targets: '#' + temp,
             scale: 0.9,
             duration: 800
         });
-    }
-    
+    } 
+}
+
+function animarCambio (menor, mayor) {
+
+    let strm = "#elQ" + menor;
+    let strM = "#elQ" + mayor;
+
+    console.log(strm, strM);
+
+    let posm = obtenerCoord(strm);
+    let posM = obtenerCoord(strM);
+
+    console.log(posm, posM);
+    anime({
+        targets: strm,
+        keyframes: [
+            {translateY: 90},
+            {translateX: posM-posm},
+            {translateY: 0}
+        ],
+        duration: 1500,
+        easing: 'easeInOutQuart'
+    });
+
+    anime({
+        targets: strM,
+        keyframes: [
+            {translateY: 90},
+            {translateX: posm-posM},
+            {translateY: 0}
+        ],
+        duration: 1500,
+        easing: 'easeInOutQuart'
+    });
+}
+
+function obtenerCoord(elemento) {
+    let elem = document.querySelector(elemento);
+    let rect = elem.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
+    return rect.right;
 }
 
 // funcion de delay a lo arduino

@@ -104,7 +104,7 @@ header h1 {
     padding: 10px;
     margin: 20px;
     background-color: rgb(39, 0, 110);
-    border-radius: 5px;
+    border-radius: 3px;
     /* transition: 500ms ease-in-out all; */
 }
 
@@ -161,6 +161,11 @@ input[type=number]:focus {
     border: 2px solid rgb(95, 146, 255);
 }
 
+.pivote {
+    background-color: rgb(255, 30, 206);
+    border: 2px solid rgb(213, 123, 255);
+}
+
 .descartado {
     background-color: rgb(109, 0, 0);
     border: 2px solid rgb(51, 0, 0);
@@ -212,8 +217,30 @@ main {
 }
 
 .input{
-    display: inline;
+    background-color: rgb(17, 17, 17);
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgb(0, 67, 143);
 }
+
+.estado {
+    width: 60%;
+    text-align: center;
+    justify-self: center;
+    position: absolute;
+    font-size: 1.1em;
+    padding: 10px 15px;
+    background-color: rgb(10, 10, 10);
+    border-bottom: 1px solid rgb(44, 95, 172);
+    border-radius: 0 0 20px 20px;
+    opacity: 0.8;
+    cursor: context-menu;
+}
+
+.estado:hover {
+    opacity: 1.0;
+    transition: 200ms ease-in-out all;
+}
+
 .go{
     margin: 10px 0;
 }
@@ -253,7 +280,7 @@ main {
 }
 
 .velocidad {
-    margin: 30px 0;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
 }
