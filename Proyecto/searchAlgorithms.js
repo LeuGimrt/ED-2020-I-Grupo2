@@ -32,30 +32,30 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
 
         if (list[center] == data ){
             console.log("encontrado en: " + center);
-            document.getElementById(temp).classList.add("encontrado");
+            animar(temp, "encontrado");
 
             msgEncontrado(true, 'b');
             return;
         } else {
-            document.getElementById(temp).classList.add("buscando");
+            animar(temp, "buscando");
         }
+        await sleep(obtenerDelay());
 
         if (list[center] < data) {
             min = center + 1;
             for(let i = center-1; i >= 0; i--) {
                 temp = "elB" + i;
-                document.getElementById(temp).classList.add("descartado");
+                animar(temp, "descartado");
             }
         } else {
             max = center - 1;
             for(let i = center+1; i < list.length; i++) {
                 temp = "elB" + i;
-                document.getElementById(temp).classList.add("descartado");
+                animar(temp, "descartado");
             }
         }
 
     }
-
 
     msgEncontrado(false, 'b');
     return;
@@ -68,9 +68,9 @@ async function linearSearch(list, data){
     while(i < list.length && list[i] != data){
 
         temp = "elL" + i;
-
-        document.getElementById(temp).classList.add("buscando");
         await sleep(obtenerDelay());
+        animar(temp, "buscando");
+        
         i++;
     }
     
@@ -80,7 +80,8 @@ async function linearSearch(list, data){
         msgEncontrado(false, 'l');
         return;
     } else if (list[i] == data) {
-        document.getElementById(temp).classList.add("encontrado");
+        await sleep(obtenerDelay());
+        animar(temp, "encontrado")
         msgEncontrado(true, 'l');
     }
     return;
@@ -143,7 +144,7 @@ function exeBinaria(list){
         document.getElementById('error-2b').innerHTML = "";
         console.log("Valor a buscar: " + data);
         //ordenamiento previo
-        list.sort(((a, b) => a - b));
+        
         escribirLista(list);
 
         binarySearch(list, data);

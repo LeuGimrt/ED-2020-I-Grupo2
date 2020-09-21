@@ -84,6 +84,7 @@ function escribirLista(list){
         if (document.getElementById("linear-tab").classList.contains('active')) {
             temp = "elL"
         } else if (document.getElementById("binary-tab").classList.contains('active')) {
+            list.sort(((a, b) => a - b));
             temp = "elB"
         } else {
             temp = "elQ"
@@ -112,6 +113,7 @@ function escribirLista(list){
     }
 
 }
+
 //++++++++++++++++++++++++++++
 //           ZOOM            +
 //++++++++++++++++++++++++++++
@@ -161,6 +163,8 @@ function evaluarZoom(){
 function obtenerDelay() {
     delay = document.getElementById('delay').value;
     //console.log(delay);
+    delay = delay - 8000;
+    delay = Math.abs(delay);
     return delay;
 }
 
@@ -173,6 +177,33 @@ function msgEncontrado(encontrado, tipo) {
         errorB.innerHTML = msg;
     else if (tipo == 'l')
         errorL.innerHTML = msg;
+}
+
+function animar(temp, estado) {
+
+    document.getElementById(temp).classList.add(estado);
+
+    if (estado == "buscando") {
+        anime({
+            targets: '#' + temp,
+            scale: 1.1,
+            duration: 600
+        });
+    } else if (estado == "encontrado") {
+        anime({
+            targets: '#' + temp,
+            scale: 1.3,
+            rotateY: 360,
+            duration: 2000
+        });
+    } else {
+        anime({
+            targets: '#' + temp,
+            scale: 0.9,
+            duration: 800
+        });
+    }
+    
 }
 
 // funcion de delay a lo arduino
