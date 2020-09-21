@@ -148,8 +148,7 @@ function evaluarZoom(){
     }
 
     let cuadros = document.getElementsByClassName("cuadro");
-    let n = list.length;
-    for (let index = n-1; index >= 0 ; index--) {
+    for (let index = 0 ; index < cuadros.length ; index++) {
         cuadros[index].style.width = zoom + "px";
         cuadros[index].style.height = zoom + "px";
         cuadros[index].style.fontSize = zoomTxt + "px";
@@ -169,10 +168,15 @@ function obtenerDelay() {
 }
 
 function msgEncontrado(encontrado, tipo) {
+    //Finalizar contador
+    tFinal =   performance.now();
+    let tiempoEjecucion =  Math.floor(tFinal - tInicio);
+    /////////////
+
     let msg = '';
 
     msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
-
+    msg += "&nbsp;&nbsp;" + "Tiempo de ejecución: " +  Math.trunc(tiempoEjecucion/1000) +"," + tiempoEjecucion%1000 + " s";
     if (tipo == 'b')
         errorB.innerHTML = msg;
     else if (tipo == 'l')
