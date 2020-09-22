@@ -150,7 +150,7 @@ function evaluarZoom(){
 
     let cuadros = document.getElementsByClassName("cuadro");
     for (let index = 0 ; index < cuadros.length ; index++) {
-        cuadros[index].style.width = zoom + "px";
+        cuadros[index].style.minWidth = zoom + "px";
         cuadros[index].style.height = zoom + "px";
         cuadros[index].style.fontSize = zoomTxt + "px";
         cuadros[index].style.margin = zoom/4 + "px";
