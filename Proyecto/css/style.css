@@ -299,18 +299,27 @@ main {
     margin-bottom: 1em;
 }
 
+.filaflex {
+    display: flex;
+}
+
 .velocidad {
     margin-top: 30px;
     display: flex;
+    flex: 1 1 auto;
     justify-content: center;
 }
 
 .velocidad span {
     position: absolute;
-    bottom: -30px;
-    left: 60px;
+    bottom: -10px;
+    left: 30px;
 }
 
+.insertar {
+    margin-top: 30px;
+    flex: 1 1 auto;
+}
 @media all and (max-width: 900px){
     .titulo{
         flex-flow: row wrap;

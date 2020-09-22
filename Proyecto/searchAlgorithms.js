@@ -85,10 +85,10 @@ async function linearSearch(list, data){
     
     temp = "elL" + (i);
 
-    if(i >= list.length || list[i] != data){
+    if(i >= list.length){
         msgEncontrado(false, 'l');
         return;
-    } else if (list[i] == data) {
+    } else{
         await sleep(obtenerDelay());
         animar(temp, "encontrado")
         msgEncontrado(true, 'l');

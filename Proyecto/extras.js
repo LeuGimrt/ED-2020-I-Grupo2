@@ -149,7 +149,7 @@ function evaluarZoom(){
 
     let cuadros = document.getElementsByClassName("cuadro");
     for (let index = 0 ; index < cuadros.length ; index++) {
-        //cuadros[index].style.width = zoom + "px";
+        cuadros[index].style.width = zoom + "px";
         cuadros[index].style.height = zoom + "px";
         cuadros[index].style.fontSize = zoomTxt + "px";
         cuadros[index].style.margin = zoom/4 + "px";
@@ -162,7 +162,7 @@ function evaluarZoom(){
 function obtenerDelay() {
     delay = document.getElementById('delay').value;
     //console.log(delay);
-    delay = delay - 8000;
+    delay = delay - 5000;
     delay = Math.abs(delay);
     return delay;
 }
@@ -252,4 +252,24 @@ function obtenerCoord(elemento) {
 // funcion de delay a lo arduino
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function insercion(){
+    while(list.length>0){
+        list.pop();
+    }
+
+    let numero = 0;
+    let contador = 0;
+    valoresPermisibles = true;
+
+    while(numero = prompt("inserte el elemento " + contador)){
+        contador++;
+        numero = parseInt(numero);
+        console.log(numero);
+        list.push(numero);
+        escribirLista(list);
+        
+    }
+    console.log(list);
 }

@@ -17,3 +17,6 @@ document.getElementById("zoom-in-icon").addEventListener("click",zoomIn);
 
 //ZOOM OUT
 document.getElementById("zoom-out-icon").addEventListener("click",zoomOut);
+
+//INSERCIÓN DE VALORES
+document.getElementById("insertar-boton").addEventListener("click",insercion);

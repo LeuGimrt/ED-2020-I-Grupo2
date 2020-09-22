@@ -60,11 +60,16 @@
 						</div>
 					</div>
 					
-					
-					<div class="velocidad">
-						<div class="position-relative">
-							<span>Velocidad</span>
-							<input type="range" class="slider" id="delay" min="0" max="8000">
+					<div class="filaflex">
+						<div class="velocidad">
+							<div class="position-relative">
+								<span>Velocidad</span>
+								<input type="range" class="slider" id="delay" min="0" max="8000">
+							</div>
+						</div>
+	
+						<div class="insertar " >
+							<button class="btn btn-dark" id="insertar-boton"> Insertar Valores</button>
 						</div>
 					</div>
 				</div>	
@@ -188,7 +193,6 @@
 							<label for="valor-buscar">Valor a Buscar: </label>
 							<input type="number" name="valor-buscar" class="num" id="valor-buscarL">
 							<button class="go btn btn-success" id="botonLin" >Buscar</button>
-							<button class="prueba" onclick="animarCambio();">UWU</button>
 
 						</div>
 						<div class="error" id="error-2l"></div>
@@ -202,13 +206,10 @@
 								Definir i como entero <br>
 								Inicio <br>
 								i &larr; 0 <br>
-								Mientras (i < tamaño(arr) y arr[i] < dato)<br>
-								&nbsp;	i &larr; i+1<br>
-								i &larr; 0 <br>
-								Mientras (i &lt; tamaño(arr) y arr[i] &lt; dato)<br>
+								Mientras (i < tamaño(arr) y arr[i] != dato)<br>
 								&nbsp;	i &larr; i+1<br>
 								FinMientras<br>
-								Si (i >= tamaño(arr) o arr[i] != dato) entonces<br>
+								Si (i >= tamaño(arr)) entonces<br>
 								&nbsp;	Devolver -1<br>
 								FinSi<br>
 								Devolver i<br>
