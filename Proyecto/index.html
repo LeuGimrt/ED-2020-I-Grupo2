@@ -235,11 +235,32 @@
 							</div>
 
 						</div>
-						<div class="buscar">
-							<label for="valor-buscar">Posición a Buscar: </label>
-							<input type="number" name="valor-buscar" class="num" id="valor-buscarQ">
-							<button class="go btn btn-success" id="botonQui" >Buscar</button>
+						<div class="row">
+							<div class="buscar col-12 col-md-6">
+								<label for="valor-buscar">Posición a Buscar: </label>
+								<input type="number" name="valor-buscar" class="num" id="valor-buscarQ">
+								<button class="go btn btn-success" id="botonQui" >Buscar</button>
+							</div>
+							<div class="leyenda-q col-12 col-md-6">
+								<span><strong>Leyenda:</strong></span>
+								<div class="row w-100">
+									<div class="grupo col-4">
+										<span>pivotLoc</span>
+										<div style="width: 12px; height: 12px;" class="pivotLoc ml-3 mt-2"></div>
+									</div>
+									<div class="grupo col-4">
+										<span>Pivote</span>
+										<div class="cuadro pivote"></div>
+									</div>
+									<div class="grupo col-4" >
+										<span>Buscando</span>
+										<div class="cuadro buscando"></div>
+									</div>
+								</div>
+								
+							</div>
 						</div>
+						
 						<div class="error" id="error-2q"></div>
 						<div class="">
 							<p class="Quick pseudo">
