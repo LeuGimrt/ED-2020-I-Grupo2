@@ -175,15 +175,18 @@ function msgEncontrado(encontrado, tipo) {
 
     let msg = '';
 
+    if(encontrado){
+        errorB.setAttribute("style", "color: green");
+        errorL.setAttribute("style", "color: green");
+    }
+
     msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
     msg += "&nbsp;&nbsp;" + "Tiempo de ejecución: " +  Math.trunc(tiempoEjecucion/1000) +"," + tiempoEjecucion%1000 + " s";
-    if (tipo == 'b'){
-        if(encontrado) errorB.setAttribute("style", "color: green");
+    if (tipo == 'b')
         errorB.innerHTML = msg;
-    }
-    else if (tipo == 'l'){
-        if(encontrado) errorL.setAttribute("style", "color: green");
-        errorL.innerHTML = msg;}
+    
+    else if (tipo == 'l')
+        errorL.innerHTML = msg;
 }
 
 function animar(temp, estado) {
