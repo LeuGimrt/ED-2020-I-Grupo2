@@ -177,10 +177,13 @@ function msgEncontrado(encontrado, tipo) {
 
     msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
     msg += "&nbsp;&nbsp;" + "Tiempo de ejecución: " +  Math.trunc(tiempoEjecucion/1000) +"," + tiempoEjecucion%1000 + " s";
-    if (tipo == 'b')
+    if (tipo == 'b'){
         errorB.innerHTML = msg;
+        if(encontrado) errorB.setAttribute("style", "color: green");
+    }
     else if (tipo == 'l')
         errorL.innerHTML = msg;
+        if(encontrado) errorB.setAttribute("style", "color: green");
 }
 
 function animar(temp, estado) {
