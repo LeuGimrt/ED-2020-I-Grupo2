@@ -181,9 +181,9 @@ function msgEncontrado(encontrado, tipo) {
         if(encontrado) errorB.setAttribute("style", "color: green");
         errorB.innerHTML = msg;
     }
-    else if (tipo == 'l')
+    else if (tipo == 'l'){
         if(encontrado) errorL.setAttribute("style", "color: green");
-        errorL.innerHTML = msg;
+        errorL.innerHTML = msg;}
 }
 
 function animar(temp, estado) {
