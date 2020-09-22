@@ -91,10 +91,10 @@ function escribirLista(list){
         }
     
         for (let index = 0; index < list.length - 1; index++) {
-            content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small>" + index + "</small></div>";
+            content = content + "<div class=\"cuadro\" id=\""+ temp + index +"\">" +  list[index] + "<br><small id=\"" + temp + "s" + index + "\">" + index + "</small></div>";
         }
        
-        content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small>" + (list.length-1) + "</small></div>";
+        content = content + "<div class=\"cuadro\" id=\""+ temp + (list.length-1) +"\">" + list[list.length-1] + "<br><small id=\"" + temp + "s" + (list.length-1) + "\">" + (list.length-1) + "</small></div>";
     
         // Evalúa qué pestaña esta activa actualmente: linear, binaria y quick
         if (document.getElementById("linear-tab").classList.contains('active')) {
@@ -127,7 +127,7 @@ function zoomIn(){
 }
 
 function zoomOut(){
-    if(zoom > 60){
+    if(zoom > 50){
         zoom = zoom - 10;
         zoomTxt = zoomTxt - 4.4;
         console.log("zoom: " + zoom);
@@ -141,7 +141,7 @@ function evaluarZoom(){
     }else{
         document.getElementById("zoom-in-icon").classList.remove("zoom-blocked");
     }
-    if(zoom == 60){
+    if(zoom == 50){
         document.getElementById("zoom-out-icon").classList.add("zoom-blocked");
     }else{
         document.getElementById("zoom-out-icon").classList.remove("zoom-blocked");
@@ -149,7 +149,7 @@ function evaluarZoom(){
 
     let cuadros = document.getElementsByClassName("cuadro");
     for (let index = 0 ; index < cuadros.length ; index++) {
-        cuadros[index].style.width = zoom + "px";
+        //cuadros[index].style.width = zoom + "px";
         cuadros[index].style.height = zoom + "px";
         cuadros[index].style.fontSize = zoomTxt + "px";
         cuadros[index].style.margin = zoom/4 + "px";
@@ -227,7 +227,7 @@ function animarCambio (menor, mayor) {
             {translateX: posM-posm},
             {translateY: 0}
         ],
-        duration: 1500,
+        duration: obtenerDelay(),
         easing: 'easeInOutQuart'
     });
 
@@ -238,7 +238,7 @@ function animarCambio (menor, mayor) {
             {translateX: posm-posM},
             {translateY: 0}
         ],
-        duration: 1500,
+        duration: obtenerDelay(),
         easing: 'easeInOutQuart'
     });
 }
@@ -246,7 +246,6 @@ function animarCambio (menor, mayor) {
 function obtenerCoord(elemento) {
     let elem = document.querySelector(elemento);
     let rect = elem.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left);
     return rect.right;
 }
 

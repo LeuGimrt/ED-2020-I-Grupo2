@@ -96,7 +96,7 @@ async function linearSearch(list, data){
     return;
 }
 
-function quickSelect(list, left, right, data){
+async function quickSelect(list, left, right, data){
     //inicializar contador
     tInicio = performance.now(), output = 0;
     /////////////
@@ -109,18 +109,43 @@ function quickSelect(list, left, right, data){
         document.getElementById(temp).classList.add("pivote");
 
         let pivotLoc = left;
-        for(let i = left; i<= right; i++){
+        for(let i = left; i < right; i++){
+            let temp1 = "elQ" + i;
+            let temps = "elQs" + pivotLoc;
+            document.getElementById(temp1).classList.add("buscando");
+            document.getElementById(temps).classList.add("pivotLoc");
             await sleep(obtenerDelay());
+            
             if(list[i] < pivot){
                 
-                let temp = list[i];
+                let aux = list[i];
                 list[i] = list[pivotLoc];
-                list[pivotLoc] = temp;
+                list[pivotLoc] = aux;
 
                 animarCambio (i, pivotLoc);
 
+                await sleep(obtenerDelay());
+
+
                 pivotLoc++;
             }
+            escribirLista(list);
+
+            //if (left - 1 !=0) {
+                for(let i = left-1; i >= 0; i--) {
+                    animar("elQ" + i, "descartado");
+                }
+            //}
+
+            //if (right+1 != list.length -1) {
+                for(let i = right+1; i < list.length; i++) {
+                    animar("elQ" + i, "descartado");
+                }
+            //}
+            
+
+            document.getElementById(temp).classList.add("pivote");
+            
         }
         document.getElementById(temp).classList.remove("pivote");
         let aux = list[right];
@@ -129,19 +154,38 @@ function quickSelect(list, left, right, data){
 
         let part = pivotLoc;
 
-        //escribirLista(list);
+    animarCambio (pivotLoc, right);
+    await sleep(obtenerDelay());
+    escribirLista(list);
 
-        
-    
+        //escribirLista(list);
     if(part == data){
         posiQuick = true;
-        return list[part]
+        let temp = "elQ" + part;
+        await sleep(obtenerDelay());
+
+        animar(temp, "encontrado")
+        console.log("la wea es " + list[part]);
+        return;
         
     }
     else if(part < data){
+        //descartar los elementos menores de part
+        for(let i = part; i >= 0; i--) {
+            temp = "elQ" + i;
+            animar(temp, "descartado");
+        }
+
         return quickSelect(list, part+1, right, data);
     }
     else {
+        //descartar mayores a part
+
+        for(let i = part; i < list.length; i++) {
+            temp = "elQ" + i;
+            animar(temp, "descartado");
+        }
+
         return quickSelect(list, left, part-1, data);
     }
 }
@@ -248,6 +292,7 @@ function exeQuick(list){
             //     listCopia[index] = list[index];
             // }
             // ///////////////////////////////
+            escribirLista(list);
             quickSelect(list,0,list.length-1, data);
             
             //let Qs = quickSelect(list,0,list.length-1, data);

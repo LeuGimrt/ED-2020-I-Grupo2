@@ -37,7 +37,7 @@ body {
 .titulo {
     display: flex;
     flex-flow: row nowrap;
-
+    background-color: rgb(17, 17, 17);
     place-items: center;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -72,7 +72,7 @@ header h1 {
 }
 
 .animacion {
-    height: 80vh;
+    height: 60vh;
     background-color: #000000;
     background-image: url(../img/bg-dark.png);
     display: flex;
@@ -98,10 +98,10 @@ header h1 {
     text-align: center;
     border-bottom: 1px solid rgb(71, 32, 245);
     height: 80px;
-    width: 80px;
+    min-width: 80px;
     flex-shrink: 0;
     font-size: 35px;
-    padding: 10px;
+    padding: 10px 10px;
     margin: 20px;
     background-color: rgb(39, 0, 110);
     border-radius: 3px;
@@ -111,6 +111,12 @@ header h1 {
 .cuadro small {
     font-size: 17px;
     color: rgb(180, 221, 255);
+}
+
+.pivotLoc {
+    outline: 2px solid rgb(255, 174, 0);
+    outline-offset: 8px;
+    font-weight: 700;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
