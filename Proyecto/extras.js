@@ -175,10 +175,15 @@ function msgEncontrado(encontrado, tipo) {
 
     let msg = '';
 
-    if(encontrado){
+     if(encontrado){
         errorB.setAttribute("style", "color: green");
         errorL.setAttribute("style", "color: green");
     }
+    else{
+        errorB.setAttribute("style", "color: red");
+        errorL.setAttribute("style", "color: red");
+    }
+
 
     msg = ( encontrado ) ? 'Valor encontrado' : 'Valor NO encontrado' ;
     msg += "&nbsp;&nbsp;" + "Tiempo de ejecución: " +  Math.trunc(tiempoEjecucion/1000) +"," + tiempoEjecucion%1000 + " s";
