@@ -242,6 +242,10 @@ main {
     border-bottom: 1px solid rgb(0, 67, 143);
 }
 
+.input .row {
+    border-bottom: 2px solid #1a1a1a;
+}
+
 .estado {
     width: 60%;
     text-align: center;
@@ -312,8 +316,8 @@ main {
 
 .velocidad span {
     position: absolute;
-    bottom: -10px;
-    left: 30px;
+    bottom: -20px;
+    left: 60px;
 }
 
 .insertar {

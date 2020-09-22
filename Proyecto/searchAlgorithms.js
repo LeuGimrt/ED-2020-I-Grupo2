@@ -77,8 +77,10 @@ async function linearSearch(list, data){
     while(i < list.length && list[i] != data){
 
         temp = "elL" + i;
-        await sleep(obtenerDelay());
+        state('Comparando: ' + list[i] + ' = ' + data, 2, 'l');
         animar(temp, "buscando");
+        await sleep(obtenerDelay());
+        
         
         i++;
     }
@@ -87,9 +89,12 @@ async function linearSearch(list, data){
 
     if(i >= list.length){
         msgEncontrado(false, 'l');
+        state('Valor no encontrado', 1, 'l');
         return;
     } else{
+        state('Comparando: ' + list[i] + ' = ' + data, 0, 'l');
         await sleep(obtenerDelay());
+        state('Encontrado en posición: ' + i, 0, 'l');
         animar(temp, "encontrado")
         msgEncontrado(true, 'l');
     }
@@ -153,7 +158,7 @@ async function quickSelect(list, left, right, data){
         list[pivotLoc] = aux;
 
         let part = pivotLoc;
-
+        await sleep(obtenerDelay());
     animarCambio (pivotLoc, right);
     await sleep(obtenerDelay());
     escribirLista(list);

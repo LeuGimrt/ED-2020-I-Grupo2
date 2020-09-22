@@ -1,5 +1,6 @@
 //++++++++++++++++++++++++++++
 //     LLENADO DE LISTA      +
+
 //++++++++++++++++++++++++++++
 function validar(entrada){
     if(entrada == ""){
@@ -161,7 +162,7 @@ function evaluarZoom(){
 //++++++++++++++++++++++++++++
 function obtenerDelay() {
     delay = document.getElementById('delay').value;
-    //console.log(delay);
+    console.log(delay);
     delay = delay - 5000;
     delay = Math.abs(delay);
     return delay;
@@ -258,6 +259,21 @@ function obtenerCoord(elemento) {
     let elem = document.querySelector(elemento);
     let rect = elem.getBoundingClientRect();
     return rect.right;
+}
+
+function state(msg, tipo, busq) {
+
+    let id = 'estado-' + busq;
+    let elem = document.getElementById(id);
+    elem.innerHTML = msg;
+
+    if (tipo == 0) {
+        elem.style.color = 'green';
+    } else if (tipo == 1) {
+        elem.style.color = 'red';
+    } else {
+        elem.style.color = 'white';
+    }
 }
 
 // funcion de delay a lo arduino
