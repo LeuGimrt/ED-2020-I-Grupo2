@@ -263,6 +263,7 @@ function obtenerCoord(elemento) {
 
 function state(msg, tipo, busq) {
 
+    console.log("state: "+ msg +", " + tipo+", " + busq)
     let id = 'estado-' + busq;
     let elem = document.getElementById(id);
     elem.innerHTML = msg;

@@ -32,7 +32,8 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
     max = list.length - 1;
     while (min <= max){
         var center = Math.floor((min+max) / 2);
-        temp = "elB" + center
+        temp = "elB" + center;
+        state('Comparando: '+list[center]+'='+data,2,'b');
 
         await sleep(obtenerDelay());  // delay
 
@@ -41,6 +42,7 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
             animar(temp, "encontrado");
 
             msgEncontrado(true, 'b');
+            state('Encontrado en posición: ' + center, 0, 'b');
             return;
         } else {
             animar(temp, "buscando");
@@ -62,7 +64,7 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
         }
 
     }
-
+    state('Valor no encontrado', 1, 'b');
     msgEncontrado(false, 'b');
     return;
 }
@@ -105,8 +107,6 @@ async function quickSelect(list, left, right, data){
     //inicializar contador
     tInicio = performance.now(), output = 0;
     /////////////
-    if(data==null)
-        data = prompt("Ingrese el valor a buscar: ");
 
         let pivot = list[right];
         let temp = "elQ" + right;
@@ -120,6 +120,8 @@ async function quickSelect(list, left, right, data){
             document.getElementById(temp1).classList.add("buscando");
             document.getElementById(temps).classList.add("pivotLoc");
             await sleep(obtenerDelay());
+
+            state('Comparando: ' + list[i] + ' < ' + pivot, 2, 'q');
             
             if(list[i] < pivot){
                 
@@ -169,7 +171,8 @@ async function quickSelect(list, left, right, data){
         let temp = "elQ" + part;
         await sleep(obtenerDelay());
 
-        animar(temp, "encontrado")
+        animar(temp, "encontrado");
+        state('Elemento encontrado: ' + list[part], 0, 'q');
         console.log("la wea es " + list[part]);
         return;
         
@@ -195,26 +198,6 @@ async function quickSelect(list, left, right, data){
     }
 }
 
-//Función partición para el quick
-function partition(list, left, right){
-    let pivot = list[right];
-    let pivotLoc = left;
-    for(let i = left; i<= right; i++){
-        if(list[i] < pivot){
-            let temp = list[i];
-            list[i] = list[pivotLoc];
-            list[pivotLoc] = temp;
-
-            animarCambio (i, pivotLoc);
-
-            pivotLoc++;
-        }
-    }
-    let aux = list[right];
-    list[right] = list[pivotLoc];
-    list[pivotLoc] = aux;
-    return pivotLoc;
-}
 
 //++++++++++++++++++++++++++++
 //     B L O Q U E   3       +
@@ -280,46 +263,14 @@ function exeQuick(list){
         dataVal = dataVal - 0;//convertir a número
         if(dataVal < 0 || dataVal >= list.length){
             document.getElementById('error-2q').innerHTML = "Error: Valor fuera de rango del arreglo";
+            state('Elemento fuera del rango', 1, 'q');
         }else{
             document.getElementById('error-2q').innerHTML = "";
             console.log("Posicion a buscar: " + data);
 
-            //listCopia.length = list.length;
-
-            // /////////ESTABLECER CUADRADOS NORMALES////////////
-            // for (let index = 0; index < list.length; index++) {
-            //     document.getElementById("elQ" + index).classList.remove("encontrado");
-            // }
-            // ///////////////////////////////
-
-            // /////////COPIAR VALORES////////////
-            // for (let index = 0; index < listCopia.length; index++) {
-            //     listCopia[index] = list[index];
-            // }
-            // ///////////////////////////////
             escribirLista(list);
             quickSelect(list,0,list.length-1, data);
-            
-            //let Qs = quickSelect(list,0,list.length-1, data);
 
-            // console.log("valor de posición "+ data +" es: " + Qs);
-            // if(posiQuick){
-            //     document.getElementById('error-2q').innerHTML = "";
-            //     //////////////////////////////////
-            //     let indice = 0;
-            //     while(listCopia[indice] != Qs){
-            //         indice++;
-            //     }
-            //     document.getElementById("elQ" + indice).classList.add("encontrado");
-            //     ///////////REESTABLECER VALORES DE LA LISTA////////
-
-            //     for (let index = 0; index < listCopia.length; index++) {
-            //         list[index] = listCopia[index];
-            //     }
-
-            // }else{
-            //     document.getElementById('error-2q').innerHTML = "El elemento no se encuentra en el arreglo";
-            // }
         }
     }
 }
