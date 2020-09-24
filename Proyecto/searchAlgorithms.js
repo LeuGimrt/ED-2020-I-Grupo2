@@ -33,7 +33,7 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
     while (min <= max){
         var center = Math.floor((min+max) / 2);
         temp = "elB" + center;
-        state('Comparando: '+list[center]+'='+data,2,'b');
+        state('Comparando con el término medio: '+list[center]+' = '+data,2,'b');
 
         await sleep(obtenerDelay());  // delay
 
@@ -45,17 +45,28 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
             state('Encontrado en posición: ' + center, 0, 'b');
             return;
         } else {
+            state('Comparando con el término medio: '+list[center]+' = '+data,1,'b');   
             animar(temp, "buscando");
         }
         await sleep(obtenerDelay());
 
         if (list[center] < data) {
+
+            state(data + " > " + list[center],0,'b');
+            
+            await sleep(obtenerDelay());
+
             min = center + 1;
             for(let i = center-1; i >= 0; i--) {
                 temp = "elB" + i;
                 animar(temp, "descartado");
             }
         } else {
+
+            state(data + " < " + list[center],0,'b');
+            
+            await sleep(obtenerDelay());
+
             max = center - 1;
             for(let i = center+1; i < list.length; i++) {
                 temp = "elB" + i;
@@ -63,6 +74,11 @@ async function binarySearch(list, data) {   //la funcion ahora es async y devuel
             }
         }
 
+    }
+
+    for(let i = 0; i < list.length; i++) {
+        temp = "elB" + i;
+        animar(temp, "descartado");
     }
     state('Valor no encontrado', 1, 'b');
     msgEncontrado(false, 'b');
@@ -79,7 +95,7 @@ async function linearSearch(list, data){
     while(i < list.length && list[i] != data){
 
         temp = "elL" + i;
-        state('Comparando: ' + list[i] + ' = ' + data, 2, 'l');
+        state('Comprobando: ' + list[i] + ' = ' + data, 2, 'l');
         animar(temp, "buscando");
         await sleep(obtenerDelay());
         
@@ -94,7 +110,7 @@ async function linearSearch(list, data){
         state('Valor no encontrado', 1, 'l');
         return;
     } else{
-        state('Comparando: ' + list[i] + ' = ' + data, 0, 'l');
+        state('Comprobando: ' + list[i] + ' = ' + data, 0, 'l');
         await sleep(obtenerDelay());
         state('Encontrado en posición: ' + i, 0, 'l');
         animar(temp, "encontrado")
