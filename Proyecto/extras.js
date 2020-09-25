@@ -164,7 +164,7 @@ function evaluarZoom(){
 function obtenerDelay() {
     delay = document.getElementById('delay').value;
     console.log(delay);
-    delay = delay - 5000;
+    delay = delay - 10000;
     delay = Math.abs(delay);
     return delay;
 }
