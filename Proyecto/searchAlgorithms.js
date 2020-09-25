@@ -287,7 +287,7 @@ function exeQuick(list){
     }
     else{
         dataVal = dataVal - 0;//convertir a número
-        if(dataVal < 0 || dataVal >= list.length){
+        if(dataVal <= 0 || dataVal > list.length){
             document.getElementById('error-2q').innerHTML = "Error: Valor fuera de rango del arreglo";
             state('Elemento fuera del rango', 1, 'q');
         }else{
