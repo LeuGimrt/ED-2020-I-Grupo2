@@ -285,7 +285,7 @@ function exeQuick(list){
             console.log("Posicion a buscar: " + data);
 
             escribirLista(list);
-            quickSelect(list,0,list.length-1, data);
+            quickSelect(list,0,list.length-1, data - 1);
 
         }
     }
