@@ -189,7 +189,8 @@ async function quickSelect(list, left, right, data){
 
         animar(temp, "encontrado");
         state('Elemento encontrado: ' + list[part], 0, 'q');
-        console.log("la wea es " + list[part]);
+        msgEncontrado(true, "q");
+        console.log("el numero es " + list[part]);
         return;
         
     }
