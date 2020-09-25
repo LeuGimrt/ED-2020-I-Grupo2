@@ -35,14 +35,12 @@ body {
 }
 
 .titulo {
-    display: flex;
-    flex-flow: row nowrap;
     background-color: rgb(17, 17, 17);
-    place-items: center;
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    min-width: 600px;
-    justify-content: space-around;
+}
+
+.titulo div {
+    align-self: center;
 }
 
 .contenedor {
@@ -51,9 +49,8 @@ body {
 }
 
 header h1 {
-    margin-left: 10%;
+    padding: 10px 40px;
     color: rgb(211, 243, 253);
-    flex: 1 1 auto;
     font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 500;
 }
@@ -65,7 +62,6 @@ header h1 {
 
 .borde {
     width: 95%;
-    min-width: 600px;   
     height: 1px;
     margin: 0 auto;
     background: #000000;
@@ -323,15 +319,6 @@ main {
 .insertar {
     margin-top: 30px;
     flex: 1 1 auto;
-}
-@media all and (max-width: 900px){
-    .titulo{
-        flex-flow: row wrap;
-    }
-
-    .pseudo{
-        margin-top: 10px;
-    }
 }
 
 

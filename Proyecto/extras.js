@@ -111,6 +111,7 @@ function escribirLista(list){
             document.getElementById("contenidografico-q").innerHTML = content;
     
         }
+        evaluarZoom();
     }
 
 }

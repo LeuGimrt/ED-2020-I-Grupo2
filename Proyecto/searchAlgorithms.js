@@ -133,14 +133,17 @@ async function quickSelect(list, left, right, data){
         for(let i = left; i < right; i++){
             let temp1 = "elQ" + i;
             let temps = "elQs" + pivotLoc;
+            state('Comparando: ' + list[i] + ' < ' + pivot, 2, 'q');
+
             document.getElementById(temp1).classList.add("buscando");
             document.getElementById(temps).classList.add("pivotLoc");
             await sleep(obtenerDelay());
 
-            state('Comparando: ' + list[i] + ' < ' + pivot, 2, 'q');
             
             if(list[i] < pivot){
                 
+                await sleep(obtenerDelay());
+                state('Comparando: ' + list[i] + ' < ' + pivot, 0, 'q');
                 let aux = list[i];
                 list[i] = list[pivotLoc];
                 list[pivotLoc] = aux;
@@ -151,6 +154,10 @@ async function quickSelect(list, left, right, data){
 
 
                 pivotLoc++;
+            } else {
+                await sleep(obtenerDelay());
+                state('Comparando: ' + list[i] + ' < ' + pivot, 0, 'q');
+
             }
             escribirLista(list);
 
@@ -177,6 +184,8 @@ async function quickSelect(list, left, right, data){
 
         let part = pivotLoc;
         await sleep(obtenerDelay());
+        state('Trasladando pivote a la posición: ' + pivotLoc, 0, 'q');
+
     animarCambio (pivotLoc, right);
     await sleep(obtenerDelay());
     escribirLista(list);
